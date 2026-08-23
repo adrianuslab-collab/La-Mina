@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Clase gratis — LA MINA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: #060505; color: #F4F1EA; font-family: 'Schibsted Grotesk', system-ui, sans-serif; overflow-x: hidden; text-wrap: pretty; }
+  * { box-sizing: border-box; }
+  img { display: block; max-width: 100%; }
+  a { color: #F07C1F; text-decoration: none; }
+  a:hover { color: #FF9A3D; }
+  h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -.03em; line-height: 1.06; }
+  p { margin: 0; }
+  input, textarea, button { font-family: inherit; }
+  ::placeholder { color: #6E6A65; }
+  @keyframes pz { 0% { box-shadow: 0 0 0 0 rgba(240,124,31,.55); } 70% { box-shadow: 0 0 0 10px rgba(240,124,31,0); } 100% { box-shadow: 0 0 0 0 rgba(240,124,31,0); } }
+  .bg1 { position: fixed; inset: 0; z-index: 0; background: url('assets/bg-mina.png') center/cover no-repeat; }
+  .bg2 { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 74% 60% at 50% 34%, rgba(6,5,5,.80) 0%, rgba(6,5,5,.70) 55%, rgba(6,5,5,.58) 100%); }
+  main { position: relative; z-index: 1; padding: 44px 20px 64px; max-width: 760px; margin: 0 auto; }
+  .logo { width: min(300px,66vw); height: auto; margin: 0 auto 26px; }
+  .lead { margin-top: 14px; text-align: center; font-size: clamp(15px,2.1vw,17.5px); line-height: 1.55; color: #A6A29B; }
+  .video { position: relative; margin: 26px auto 0; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(240,124,31,.4); background: #131110; box-shadow: 0 30px 90px rgba(0,0,0,.6); }
+  .video > div, .video > button { position: absolute; inset: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: rgba(6,5,5,.55); border: 0; cursor: pointer; padding: 0; }
+  .circle { width: 68px; height: 68px; border-radius: 50%; background: #F07C1F; display: grid; place-items: center; animation: pz 3.2s ease-out infinite; }
+  .circle svg { width: 27px; height: 27px; fill: #0B0908; }
+  .cta { display: block; width: 100%; margin-top: 18px; padding: 21px 24px; border-radius: 12px; border: 0; background: #F07C1F; color: #0B0908; font-size: clamp(15px,2.4vw,18px); font-weight: 800; letter-spacing: .03em; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 0 1px rgba(240,124,31,.5), 0 16px 48px rgba(240,124,31,.3); }
+  .cta:hover { background: #FF9A3D; color: #0B0908; }
+  .box { margin-top: 20px; position: relative; border-radius: 18px; border: 1px solid rgba(255,255,255,.10); background: rgba(19,17,16,.92); padding: clamp(26px,4vw,40px) clamp(20px,3.4vw,36px); min-height: 420px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,.55); }
+  .bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: rgba(255,255,255,.07); }
+  .bar i { display: block; height: 100%; background: #F07C1F; transition: width .4s cubic-bezier(.16,1,.3,1); }
+  .qn { font-size: 12.5px; font-weight: 800; letter-spacing: .2em; color: #F07C1F; margin-bottom: 14px; }
+  .qq { font-size: clamp(21px,3.6vw,32px); font-weight: 800; letter-spacing: -.025em; line-height: 1.14; }
+  .qs { margin-top: 10px; font-size: 14.5px; color: #7E7A74; }
+  .opts { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+  .opt { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 17px 18px; border-radius: 12px; background: rgba(30,27,25,.9); border: 1px solid rgba(255,255,255,.10); color: #F4F1EA; font-size: 16px; font-weight: 600; cursor: pointer; transition: border-color .2s, background .2s, transform .15s; }
+  .opt:hover { border-color: #F07C1F; background: rgba(240,124,31,.10); transform: translateX(4px); }
+  .opt i { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); font-style: normal; font-size: 12px; font-weight: 800; color: #7E7A74; }
+  .field { margin-top: 26px; }
+  .field input { width: 100%; background: transparent; border: 0; border-bottom: 1.5px solid rgba(240,124,31,.55); color: #F4F1EA; font-size: clamp(18px,2.4vw,22px); padding: 10px 2px; outline: none; }
+  .field textarea { width: 100%; min-height: 120px; resize: vertical; border-radius: 12px; border: 1.5px solid rgba(255,255,255,.10); background: rgba(30,27,25,.85); color: #F4F1EA; font-size: 16px; line-height: 1.5; padding: 16px; outline: none; }
+  .foot { margin-top: auto; padding-top: 28px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .back { background: none; border: 0; color: #7E7A74; font-size: 13.5px; cursor: pointer; padding: 6px 2px; }
+  .next { border: 0; border-radius: 12px; background: #F07C1F; color: #0B0908; font-size: 15px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 16px 28px; cursor: pointer; box-shadow: 0 12px 36px rgba(240,124,31,.24); }
+  .err { font-size: 13px; color: #F07C1F; }
+  .call { margin-top: 22px; padding: 26px; border-radius: 16px; border: 1px solid rgba(240,124,31,.32); background: rgba(24,18,13,.85); text-align: center; }
+  .call a { display: inline-block; margin-top: 20px; padding: 19px 32px; border-radius: 12px; background: #F07C1F; color: #0B0908; font-size: 15px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; box-shadow: 0 14px 44px rgba(240,124,31,.26); }
+  .call a:hover { background: #FF9A3D; color: #0B0908; }
+  .hidden { display: none !important; }
+  .links { margin-top: 26px; display: flex; justify-content: center; gap: 20px; font-size: 12.5px; color: #6E6A65; }
+  .links a, .links button { color: #6E6A65; background: none; border: 0; font-size: 12.5px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="bg1"></div>
+<div class="bg2"></div>
+
+<main>
+  <img class="logo" src="assets/logo-naranja.png" alt="LA MINA" />
+
+  <h1 style="font-size:clamp(26px,5.2vw,46px);text-align:center;">Te enseño gratis el sistema con el que llevo <span style="color:#F07C1F;">más de 1.000.000 $ retirados</span></h1>
+  <p class="lead">Una clase completa, sin coste y sin tarjeta. Rellena tus datos y se desbloquea al instante.</p>
+
+  <div class="video">
+    <button id="lock" type="button">
+      <span class="circle"><svg viewBox="0 0 24 24"><path d="M17.5 9.5h-.8V7.2a4.7 4.7 0 1 0-9.4 0v2.3h-.8A1.7 1.7 0 0 0 4.8 11.2v8A1.7 1.7 0 0 0 6.5 20.9h11a1.7 1.7 0 0 0 1.7-1.7v-8a1.7 1.7 0 0 0-1.7-1.7Zm-8.4-2.3a2.9 2.9 0 1 1 5.8 0v2.3H9.1V7.2Z"/></svg></span>
+      <b style="font-size:13.5px;font-weight:700;color:#F4F1EA;">Clase bloqueada · rellena tus datos para verla</b>
+    </button>
+    <div id="player" class="hidden">
+      <span class="circle" style="animation:none;"><svg viewBox="0 0 24 24" style="margin-left:3px;"><path d="M8 5v14l11-7L8 5Z"/></svg></span>
+      <span style="position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:12px;color:#7E7A74;">Vídeo pendiente de subir</span>
+    </div>
+  </div>
+
+  <div id="call" class="call hidden">
+    <div style="font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#F07C1F;">Siguiente paso</div>
+    <h2 style="margin-top:12px;font-size:clamp(22px,3.6vw,30px);">¿Te han quedado dudas? Hablamos 1 a 1.</h2>
+    <p style="margin-top:12px;font-size:15.5px;line-height:1.55;color:#A6A29B;max-width:470px;margin-left:auto;margin-right:auto;">30 minutos conmigo, sin compromiso: dónde estás, qué te falta y si LA MINA es para ti.</p>
+    <a href="https://calendly.com/adrianuslab/edicion-2-0" target="_blank" rel="noopener">Agendar mi llamada</a>
+  </div>
+
+  <div id="quizwrap">
+    <button class="cta" id="scrollcta" type="button">Recibir clase gratis ya ↓</button>
+
+    <div style="margin-top:44px;text-align:center;">
+      <h2 style="font-size:clamp(26px,4.6vw,42px);">Rellena tus datos para recibir la <span style="color:#F07C1F;">clase gratis</span></h2>
+      <p style="margin-top:12px;font-size:15.5px;color:#A6A29B;">7 preguntas rápidas. Al terminar se desbloquea entera, sin coste.</p>
+    </div>
+
+    <div class="box" id="quiz">
+      <div class="bar"><i id="bar" style="width:6%"></i></div>
+      <div id="body"></div>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="index.html">← Volver al inicio</a>
+    <button type="button" id="reset">Empezar de nuevo</button>
+  </div>
+</main>
+
+<script>
+// Pega aquí tu endpoint (Formspree u otro) para recibir los leads por email:
+var FORM_ENDPOINT = "";
+
+var STEPS = [
+  { t:'opt', k:'experiencia', q:'¿Cuánto tiempo llevas operando?', s:'Sé sincero, esto define si puedo ayudarte.', o:['Todavía no he empezado','Menos de 1 año','Entre 1 y 3 años','Más de 3 años'] },
+  { t:'opt', k:'retiros', q:'¿Has retirado dinero del mercado alguna vez?', s:'Cuenta personal o fondeo, da igual.', o:['Nunca he retirado','Algún retiro suelto','Retiro casi todos los meses'] },
+  { t:'text', k:'nombre', q:'¿Cómo te llamas?', s:'Nombre y apellido.', ph:'Escribe tu nombre aquí…' },
+  { t:'email', k:'email', q:'¿A qué email te escribo?', s:'Revisa que esté bien escrito.', ph:'tunombre@email.com' },
+  { t:'area', k:'situacion', q:'¿Cuál es tu situación ahora mismo?', s:'Sé honesto. Esto lo leo yo.', ph:'Cuéntame dónde estás y qué quieres conseguir…' },
+  { t:'opt', k:'inversion', q:'¿Cuánto estás dispuesto a invertir en resolver esto?', s:'La clase es gratis. Esto es para saber si encajas en la comunidad.', o:['Nada, solo quiero información gratis','Menos de 100 $','Entre 100 y 900 $','Más de 1.500 $ si veo que funciona'] },
+  { t:'text', k:'telefono', q:'Por último, ¿tu teléfono?', s:'Con prefijo internacional.', ph:'+34 600 000 000' }
+];
+
+(function(){
+  var i = 0, data = {}, body = document.getElementById('body'), bar = document.getElementById('bar');
+
+  function esc(s){ return String(s).replace(/"/g,'&quot;'); }
+
+  function unlock(){
+    document.getElementById('quizwrap').classList.add('hidden');
+    document.getElementById('lock').classList.add('hidden');
+    document.getElementById('player').classList.remove('hidden');
+    document.getElementById('call').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function send(){
+    var payload = Object.assign({ _subject: 'Nuevo lead LA MINA — ' + (data.nombre || 'sin nombre'), fecha: new Date().toISOString() }, data);
+    try {
+      var prev = JSON.parse(localStorage.getItem('lamina_leads') || '[]');
+      prev.push(payload);
+      localStorage.setItem('lamina_leads', JSON.stringify(prev));
+      localStorage.setItem('lamina_clase', '1');
+    } catch(e) {}
+    if (FORM_ENDPOINT) {
+      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json', Accept:'application/json' }, body: JSON.stringify(payload) }).catch(function(){});
+    }
+  }
+
+  function foot(label){
+    return '<div class="foot">' + (i > 0 ? '<button class="back" type="button" id="back">← Atrás</button>' : '') +
+      '<button class="next" type="button" id="next">' + label + ' →</button><span class="err" id="err"></span></div>';
+  }
+
+  function render(){
+    var st = STEPS[i];
+    bar.style.width = Math.round(6 + (i / STEPS.length) * 94) + '%';
+    var head = '<div class="qn">' + String(i+1).padStart(2,'0') + ' → ' + String(STEPS.length).padStart(2,'0') + '</div>' +
+      '<div class="qq">' + st.q + '</div><div class="qs">' + st.s + '</div>';
+
+    if (st.t === 'opt') {
+      body.innerHTML = head + '<div class="opts">' + st.o.map(function(o,n){
+        return '<button class="opt" type="button" data-v="' + n + '"><i>' + String.fromCharCode(65+n) + '</i>' + o + '</button>';
+      }).join('') + '</div>' + (i > 0 ? '<div class="foot"><button class="back" type="button" id="back">← Atrás</button></div>' : '');
+      Array.prototype.forEach.call(body.querySelectorAll('.opt'), function(b){
+        b.onclick = function(){ data[st.k] = st.o[+b.dataset.v]; step(); };
+      });
+    } else if (st.t === 'area') {
+      body.innerHTML = head + '<div class="field"><textarea id="in" placeholder="' + esc(st.ph) + '">' + (data[st.k] || '') + '</textarea></div>' + foot('Siguiente');
+      wire(st);
+    } else {
+      body.innerHTML = head + '<div class="field"><input id="in" type="' + (st.t === 'email' ? 'email' : 'text') + '" placeholder="' + esc(st.ph) + '" value="' + esc(data[st.k] || '') + '" /></div>' + foot(i === STEPS.length - 1 ? 'Desbloquear clase' : 'Siguiente');
+      wire(st);
+    }
+    var back = document.getElementById('back');
+    if (back) back.onclick = function(){ if (i > 0) { i--; render(); } };
+  }
+
+  function wire(st){
+    var input = document.getElementById('in'), next = document.getElementById('next'), err = document.getElementById('err');
+    input.focus();
+    function go(){
+      var v = (input.value || '').trim();
+      if (st.t === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { err.textContent = 'Ese email no parece correcto.'; return; }
+      if (st.k === 'telefono' && v.replace(/\D/g,'').length < 6) { err.textContent = 'Escribe un número válido.'; return; }
+      if (v.length < 2) { err.textContent = 'Rellena este campo para continuar.'; return; }
+      data[st.k] = v; step();
+    }
+    next.onclick = go;
+    input.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && input.tagName !== 'TEXTAREA') { e.preventDefault(); go(); }
+    });
+  }
+
+  function step(){
+    i++;
+    if (i >= STEPS.length) { bar.style.width = '100%'; send(); unlock(); return; }
+    render();
+  }
+
+  function toQuiz(){ document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  document.getElementById('lock').onclick = toQuiz;
+  document.getElementById('scrollcta').onclick = toQuiz;
+  document.getElementById('reset').onclick = function(){
+    try { localStorage.removeItem('lamina_clase'); } catch(e) {}
+    location.reload();
+  };
+
+  try { if (localStorage.getItem('lamina_clase') === '1') { unlock(); } } catch(e) {}
+  render();
+})();
+</script>
+</body>
+</html>
