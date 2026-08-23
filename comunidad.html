@@ -19,6 +19,7 @@
   @keyframes pz { 0% { box-shadow: 0 0 0 0 rgba(240,124,31,.55); } 70% { box-shadow: 0 0 0 10px rgba(240,124,31,0); } 100% { box-shadow: 0 0 0 0 rgba(240,124,31,0); } }
   summary::-webkit-details-marker { display: none; }
   details[open] .faq-plus { transform: rotate(45deg); }
+  @media (max-width: 719px) { .historia-img { order: -1; } }
   .rail::-webkit-scrollbar { height: 6px; }
   .rail::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 99px; }
 </style>
@@ -67,7 +68,7 @@
       </div>
       <a href="#precios" style="display:inline-block;margin-top:26px;padding:18px 30px;border-radius:12px;background:#F07C1F;color:#0B0908;font-size:15px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 14px 44px rgba(240,124,31,.26);transition:background .2s ease, transform .18s ease;" class="hv2">Entrar a la mina ↓</a>
     </div>
-    <div style="position:relative;aspect-ratio:1/1;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);">
+    <div class="historia-img" style="position:relative;aspect-ratio:1/1;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);">
       <img src="assets/historia-dubai.png" alt="Adrián en Dubái y transferencias de retiros" style="width:100%;height:100%;object-fit:cover;" />
     </div>
   </section>
