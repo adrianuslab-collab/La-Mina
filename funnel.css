@@ -81,7 +81,7 @@ p{margin:0}
 
 /* shared smoke background */
 body{background:#050607}
-.bg{position:fixed;inset:0;z-index:0;background:url('assets/bg-smoke.jpg') center/cover no-repeat;opacity:1}
+.bg{position:fixed;inset:0;z-index:0;background:url('assets/bg-mina.png') center/cover no-repeat;opacity:1}
 .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(5,6,7,.86) 0%,rgba(5,6,7,.62) 55%,rgba(5,6,7,.4) 100%)}
 .sec,.foot,.top{position:relative;z-index:1}
 .sec--alt{background:transparent}
