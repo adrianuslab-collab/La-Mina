@@ -108,7 +108,7 @@
 
   <div class="links">
     <a href="index.html">← Volver al inicio</a>
-    <button type="button" id="reset">Empezar de nuevo</button>
+    <button type="button" id="reset" class="hidden">Empezar de nuevo</button>
   </div>
 </main>
 
@@ -133,6 +133,7 @@ var STEPS = [
   if (!CLASE_DISPONIBLE) { return; }
   document.getElementById('funnel').classList.remove('hidden');
   document.getElementById('soon').classList.add('hidden');
+  document.getElementById('reset').classList.remove('hidden');
 
   var i = 0, data = {}, body = document.getElementById('body'), bar = document.getElementById('bar');
 
