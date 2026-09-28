@@ -51,3 +51,9 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
+
+// Función de prueba manual: selecciónala en el desplegable de arriba del editor
+// (donde pone "doPost") y dale a Ejecutar. No hace falta implementar nada para esto.
+function testEmail() {
+  MailApp.sendEmail(EMAIL_AVISO, 'Prueba manual La Mina', 'Si recibes esto, el envío de correo funciona.');
+}
