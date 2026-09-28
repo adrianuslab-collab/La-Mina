@@ -85,9 +85,13 @@
 
   <div id="call" class="call hidden">
     <div style="font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#F07C1F;">Siguiente paso</div>
-    <h2 style="margin-top:12px;font-size:clamp(22px,3.6vw,30px);">¿Te han quedado dudas? Hablamos 1 a 1.</h2>
-    <p style="margin-top:12px;font-size:15.5px;line-height:1.55;color:#A6A29B;max-width:470px;margin-left:auto;margin-right:auto;">30 minutos conmigo, sin compromiso: dónde estás, qué te falta y si LA MINA es para ti.</p>
-    <a href="https://calendly.com/adrianuslab/edicion-2-0" target="_blank" rel="noopener">Agendar mi llamada</a>
+    <h2 style="margin-top:12px;font-size:clamp(22px,3.6vw,30px);">¿Te han quedado dudas? Escríbeme.</h2>
+    <p style="margin-top:12px;font-size:15.5px;line-height:1.55;color:#A6A29B;max-width:470px;margin-left:auto;margin-right:auto;">Cuéntame dónde estás y qué te falta. Te leo yo mismo y te respondo.</p>
+    <div style="margin-top:22px;max-width:440px;margin-left:auto;margin-right:auto;text-align:left;">
+      <textarea id="call-msg" placeholder="Escribe tu mensaje aquí…" style="width:100%;min-height:110px;resize:vertical;border-radius:12px;border:1.5px solid rgba(255,255,255,.10);background:rgba(30,27,25,.85);color:#F4F1EA;font-size:15px;line-height:1.5;padding:14px;outline:none;font-family:inherit;"></textarea>
+      <button id="call-send" type="button" style="display:block;width:100%;margin-top:12px;padding:17px 24px;border-radius:12px;border:0;background:#F07C1F;color:#0B0908;font-size:15px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;cursor:pointer;">Enviar mensaje</button>
+      <div id="call-sent" class="hidden" style="margin-top:12px;text-align:center;font-size:13.5px;color:#7E7A74;">¡Mensaje enviado! Te responderé pronto.</div>
+    </div>
   </div>
 
   <div id="quizwrap">
@@ -226,6 +230,20 @@ var STEPS = [
   document.getElementById('reset').onclick = function(){
     try { localStorage.removeItem('lamina_clase'); } catch(e) {}
     location.reload();
+  };
+
+  document.getElementById('call-send').onclick = function(){
+    var btn = this, msgEl = document.getElementById('call-msg');
+    var mensaje = (msgEl.value || '').trim();
+    if (!mensaje) { msgEl.focus(); return; }
+    var payload = Object.assign({ tipo: 'Mensaje', fecha: new Date().toISOString(), mensaje: mensaje }, data);
+    if (FORM_ENDPOINT) {
+      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(function(){});
+    }
+    btn.disabled = true;
+    btn.textContent = 'Enviado ✓';
+    msgEl.disabled = true;
+    document.getElementById('call-sent').classList.remove('hidden');
   };
 
   try { if (localStorage.getItem('lamina_clase') === '1') { unlock(); } } catch(e) {}
