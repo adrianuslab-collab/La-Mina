@@ -5,6 +5,8 @@
 // Antes de implementar, añade estas dos cabeceras nuevas en la fila 1 de la hoja,
 // después de "Inversión": Mensaje | Tipo
 
+var EMAIL_AVISO = 'adrianuslab@gmail.com';
+
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var data = JSON.parse(e.postData.contents);
@@ -25,7 +27,7 @@ function doPost(e) {
   // Cuando alguien escribe un mensaje (no solo completa el quiz), avisa también por email
   if (data.tipo === 'Mensaje') {
     MailApp.sendEmail({
-      to: Session.getEffectiveUser().getEmail(),
+      to: EMAIL_AVISO,
       subject: 'Nuevo mensaje en LA MINA — ' + (data.nombre || 'sin nombre'),
       body: 'Nombre: ' + (data.nombre || '') + '\n' +
             'Email: ' + (data.email || '') + '\n' +
