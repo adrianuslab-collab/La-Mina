@@ -164,7 +164,8 @@ var STEPS = [
       localStorage.setItem('lamina_clase', '1');
     } catch(e) {}
     if (FORM_ENDPOINT) {
-      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json', Accept:'application/json' }, body: JSON.stringify(payload) }).catch(function(){});
+      // text/plain evita que el navegador haga un preflight CORS, que Google Apps Script no gestiona bien
+      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(function(){});
     }
   }
 
