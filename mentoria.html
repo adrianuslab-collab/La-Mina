@@ -119,7 +119,8 @@
 
 <script>
 // Cambia a true en cuanto subas el vídeo de la clase para reactivar el funnel:
-var CLASE_DISPONIBLE = false;
+var CLASE_DISPONIBLE = true;
+var CLASE_YOUTUBE_ID = 'JIyHcVA1WkA';
 
 // Pega aquí tu endpoint (Formspree u otro) para recibir los leads por email:
 var FORM_ENDPOINT = "";
@@ -147,7 +148,9 @@ var STEPS = [
   function unlock(){
     document.getElementById('quizwrap').classList.add('hidden');
     document.getElementById('lock').classList.add('hidden');
-    document.getElementById('player').classList.remove('hidden');
+    var player = document.getElementById('player');
+    player.classList.remove('hidden');
+    player.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + CLASE_YOUTUBE_ID + '?autoplay=1&rel=0" title="Clase gratis LA MINA" frameborder="0" allow="accelerate; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>';
     document.getElementById('call').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
