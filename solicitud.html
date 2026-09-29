@@ -83,7 +83,7 @@
     <h2>Puedes empezar por la clase gratuita o conocer la comunidad</h2>
     <p>Si más adelante quieres trabajar conmigo de forma individual, podrás volver a solicitar la mentoría.</p>
     <div class="exit-actions">
-      <a class="primary" href="clase.html">Ver la clase gratuita</a>
+      <a class="primary" href="mentoria.html">Ver la clase gratuita</a>
       <a class="secondary" href="comunidad.html">Conocer la comunidad</a>
     </div>
   </div>
@@ -97,7 +97,7 @@
     </div>
   </div>
 
-  <a class="back-link" href="mentoria.html">← Volver a la mentoría</a>
+  <a class="back-link" href="mentoria.html">← Volver a la clase gratuita</a>
 </main>
 
 <script src="analytics.js"></script>
@@ -253,6 +253,56 @@ var STEPS = [
     });
   }
 
+  function renderConfirmacionFinal(){
+    bar.style.width = '100%';
+    body.innerHTML =
+      '<div class="qn">Ya casi está</div>' +
+      '<div class="qq">Revisa y confirma tu solicitud</div>' +
+      '<div class="qs">Ya tengo tus respuestas de la clase gratuita — solo falta confirmar para enviarla.</div>' +
+      '<div class="field" style="margin-top:22px;font-size:14.5px;color:#A6A29B;line-height:1.8;border-top:0;">' +
+        '<div><b style="color:#F4F1EA;">Nombre:</b> ' + esc(data.nombre) + '</div>' +
+        '<div><b style="color:#F4F1EA;">Email:</b> ' + esc(data.email) + '</div>' +
+        '<div><b style="color:#F4F1EA;">Teléfono:</b> ' + esc(data.telefono) + '</div>' +
+        '<div><b style="color:#F4F1EA;">Presupuesto:</b> ' + esc(presupuestoLabel) + '</div>' +
+      '</div>' +
+      consentBlock() + foot('Enviar solicitud y elegir horario', true);
+    var next = document.getElementById('next');
+    document.getElementById('confirmacion').onchange = function(){ next.disabled = !this.checked; };
+    next.onclick = function(){
+      data.consentimientoComercial = document.getElementById('consentimiento').checked;
+      data.confirmacion = true;
+      enviarSolicitud();
+    };
+  }
+
+  function intentarPrefill(){
+    var raw;
+    try { raw = sessionStorage.getItem('lamina_quiz_prefill'); } catch(e){ return false; }
+    if (!raw) return false;
+    var pre;
+    try { pre = JSON.parse(raw); } catch(e){ return false; }
+    if (!pre || !pre.presupuestoKey || !pre.nombre || !pre.email || !pre.telefono || !pre.situacion || !pre.experiencia || !pre.retiros) return false;
+
+    data.experiencia = pre.experiencia;
+    data.retiros = pre.retiros;
+    data.situacion = pre.situacion;
+    data.nombre = pre.nombre;
+    data.email = pre.email;
+    data.telefono = pre.telefono;
+    presupuestoKey = pre.presupuestoKey;
+    presupuestoLabel = pre.presupuestoLabel || '';
+
+    if (presupuestoKey !== 'mas1000') {
+      track('filtro_resultado', { calificado: false });
+      document.getElementById('quiz').classList.add('hidden');
+      document.getElementById('exit-bajo-presupuesto').classList.remove('hidden');
+      return true;
+    }
+    track('filtro_resultado', { calificado: true });
+    renderConfirmacionFinal();
+    return true;
+  }
+
   function enviarSolicitud(){
     var next = document.getElementById('next');
     var err = document.getElementById('err');
@@ -306,7 +356,7 @@ var STEPS = [
   document.getElementById('retry-btn').onclick = function(){
     document.getElementById('exit-error').classList.add('hidden');
     document.getElementById('quiz').classList.remove('hidden');
-    render();
+    if (!intentarPrefill()) { render(); }
   };
 
   function step(){
@@ -315,7 +365,7 @@ var STEPS = [
     render();
   }
 
-  render();
+  if (!intentarPrefill()) { render(); }
 })();
 </script>
 </body>
