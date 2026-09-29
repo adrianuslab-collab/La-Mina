@@ -46,6 +46,9 @@
   .field { margin-top: 26px; }
   .field input { width: 100%; background: transparent; border: 0; border-bottom: 1.5px solid rgba(240,124,31,.55); color: #F4F1EA; font-size: clamp(18px,2.4vw,22px); padding: 10px 2px; outline: none; }
   .field textarea { width: 100%; min-height: 120px; resize: vertical; border-radius: 12px; border: 1.5px solid rgba(255,255,255,.10); background: rgba(30,27,25,.85); color: #F4F1EA; font-size: 16px; line-height: 1.5; padding: 16px; outline: none; }
+  .phone-row { display: flex; gap: 10px; margin-top: 26px; }
+  .phone-row select { flex: 0 0 auto; width: 108px; background: rgba(30,27,25,.85); border: 1.5px solid rgba(255,255,255,.10); border-radius: 10px; color: #F4F1EA; font-size: 15px; padding: 12px 8px; outline: none; }
+  .phone-row input { flex: 1 1 auto; background: transparent; border: 0; border-bottom: 1.5px solid rgba(240,124,31,.55); color: #F4F1EA; font-size: clamp(17px,2.2vw,20px); padding: 10px 2px; outline: none; min-width: 0; }
   .foot { margin-top: auto; padding-top: 28px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .back { background: none; border: 0; color: #7E7A74; font-size: 13.5px; cursor: pointer; padding: 6px 2px; }
   .next { border: 0; border-radius: 12px; background: #F07C1F; color: #0B0908; font-size: 15px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 16px 28px; cursor: pointer; box-shadow: 0 12px 36px rgba(240,124,31,.24); }
@@ -148,6 +151,17 @@ var CLASE_YOUTUBE_ID = 'JIyHcVA1WkA';
 // Formulario de Formspree "Leads clase gratis La Mina" (sin acción de email configurada a propósito):
 var FORM_ENDPOINT = "https://formspree.io/f/xppwkypz";
 
+var PAISES = [
+  { code: 'ES', dial: '+34' }, { code: 'MX', dial: '+52' }, { code: 'AR', dial: '+54' },
+  { code: 'CO', dial: '+57' }, { code: 'CL', dial: '+56' }, { code: 'PE', dial: '+51' },
+  { code: 'EC', dial: '+593' }, { code: 'VE', dial: '+58' }, { code: 'UY', dial: '+598' },
+  { code: 'PY', dial: '+595' }, { code: 'BO', dial: '+591' }, { code: 'CR', dial: '+506' },
+  { code: 'PA', dial: '+507' }, { code: 'GT', dial: '+502' }, { code: 'HN', dial: '+504' },
+  { code: 'SV', dial: '+503' }, { code: 'NI', dial: '+505' }, { code: 'DO', dial: '+1' },
+  { code: 'US', dial: '+1' }, { code: 'PT', dial: '+351' }, { code: 'FR', dial: '+33' },
+  { code: 'IT', dial: '+39' }, { code: 'DE', dial: '+49' }, { code: 'GB', dial: '+44' }
+];
+
 var PRESUPUESTO_OPCIONES = [
   { label: 'Ahora mismo solo quiero información gratuita', key: 'gratis' },
   { label: 'Prefiero (o ya tengo) el plan Estándar, $120/mes', key: 'estandar' },
@@ -161,7 +175,7 @@ var STEPS = [
   { t:'area', k:'situacion', q:'¿Cuál es tu situación ahora mismo?', s:'Sé honesto. Esto lo leo yo.', ph:'Cuéntame dónde estás y qué quieres conseguir…' },
   { t:'text', k:'nombre', q:'¿Cómo te llamas?', s:'Nombre y apellido.', ph:'Escribe tu nombre aquí…' },
   { t:'email', k:'email', q:'¿A qué email te escribo?', s:'Revisa que esté bien escrito.', ph:'tunombre@email.com' },
-  { t:'text', k:'telefono', q:'Por último, ¿tu teléfono?', s:'Con prefijo internacional.', ph:'+34 600 000 000' }
+  { t:'tel', k:'telefono', q:'Por último, ¿tu teléfono?', s:'Elige tu país y escribe el número.' }
 ];
 
 (function(){
@@ -255,6 +269,12 @@ var STEPS = [
     } else if (st.t === 'area') {
       body.innerHTML = head + '<div class="field"><textarea id="in" placeholder="' + esc(st.ph) + '">' + (data[st.k] || '') + '</textarea></div>' + foot('Siguiente');
       wire(st);
+    } else if (st.t === 'tel') {
+      var dialActual = data.telefonoDial || '+34';
+      var opcionesPais = PAISES.map(function(p){ return '<option value="' + p.dial + '">' + p.code + ' ' + p.dial + '</option>'; }).join('');
+      body.innerHTML = head + '<div class="phone-row"><select id="dial">' + opcionesPais + '</select><input id="in" type="tel" placeholder="600 000 000" value="' + esc(data.telefonoNumero || '') + '" /></div>' + foot('Desbloquear clase');
+      document.getElementById('dial').value = dialActual;
+      wire(st);
     } else {
       body.innerHTML = head + '<div class="field"><input id="in" type="' + (st.t === 'email' ? 'email' : 'text') + '" placeholder="' + esc(st.ph) + '" value="' + esc(data[st.k] || '') + '" /></div>' + foot(i === STEPS.length - 1 ? 'Desbloquear clase' : 'Siguiente');
       wire(st);
@@ -269,7 +289,14 @@ var STEPS = [
     function go(){
       var v = (input.value || '').trim();
       if (st.t === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { err.textContent = 'Ese email no parece correcto.'; return; }
-      if (st.k === 'telefono' && v.replace(/\D/g,'').length < 6) { err.textContent = 'Escribe un número válido.'; return; }
+      if (st.t === 'tel') {
+        if (v.replace(/\D/g,'').length < 6) { err.textContent = 'Escribe un número válido.'; return; }
+        data.telefonoDial = document.getElementById('dial').value;
+        data.telefonoNumero = v;
+        data.telefono = data.telefonoDial + ' ' + v;
+        step();
+        return;
+      }
       if (v.length < 2) { err.textContent = 'Rellena este campo para continuar.'; return; }
       data[st.k] = v; step();
     }
