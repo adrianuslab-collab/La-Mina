@@ -1,4 +1,4 @@
-// Vercel Serverless Function: recibe la solicitud de mentoría, la vuelve a validar
+// Vercel Serverless Function: recibe la solicitud del plan Premium, la vuelve a validar
 // en el servidor (nunca confiamos en lo que diga el navegador) y, si es válida,
 // la reenvía a Formspree y devuelve un token firmado que da acceso a reserva.html.
 //
@@ -8,7 +8,7 @@
 
 const crypto = require('crypto');
 
-const PRESUPUESTO_QUE_CALIFICA = 'mas1000';
+const PRESUPUESTO_QUE_CALIFICA = 'premium';
 
 function firmar(payload) {
   return crypto.createHmac('sha256', process.env.TOKEN_SECRET).update(payload).digest('hex');
@@ -74,12 +74,12 @@ module.exports = async (req, res) => {
     'Retiradas': retiros,
     'Situación actual': situacion,
     'Presupuesto declarado': presupuestoLabel,
-    'Confirmación': 'Solicita mentoría individual y quiere valorar si encaja',
+    'Confirmación': 'Solicita acceso al plan Premium y quiere valorar si encaja',
     'Acepta comunicaciones comerciales': consentimientoComercial ? 'Sí' : 'No',
     'Fecha de la solicitud': fecha,
     'ID de solicitud': solicitudId,
     'Origen': origen || '(no disponible)',
-    '_subject': 'Nueva solicitud de mentoría — ' + nombre
+    '_subject': 'Nueva solicitud de plan Premium — ' + nombre
   };
 
   try {

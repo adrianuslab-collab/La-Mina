@@ -96,9 +96,9 @@
 
   <div id="mentoria-cta" class="call hidden" style="border-color:rgba(240,124,31,.5);">
     <div style="font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#F07C1F;">¿Quieres ir más allá?</div>
-    <h2 style="margin-top:12px;font-size:clamp(22px,3.6vw,30px);">Acompañamiento 1 a 1</h2>
-    <p style="margin-top:12px;font-size:15.5px;line-height:1.55;color:#A6A29B;max-width:470px;margin-left:auto;margin-right:auto;">Si prefieres trabajar tu situación conmigo de forma individual, puedo acompañarte con una mentoría personalizada. Requiere una inversión superior a 1.000 €.</p>
-    <a href="solicitud.html">Me interesa la mentoría individual</a>
+    <h2 style="margin-top:12px;font-size:clamp(22px,3.6vw,30px);">Plan Premium</h2>
+    <p style="margin-top:12px;font-size:15.5px;line-height:1.55;color:#A6A29B;max-width:470px;margin-left:auto;margin-right:auto;">Si puedes y quieres invertir en el plan Premium ($1.000/año), tendrás acceso a la sala Premium de la comunidad. Solicítalo y, si encaja, agendamos una breve llamada de confirmación.</p>
+    <a href="solicitud.html">Solicitar el plan Premium</a>
   </div>
 
   <div id="quizwrap">
@@ -137,16 +137,15 @@ var CLASE_YOUTUBE_ID = 'JIyHcVA1WkA';
 var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxdKoh8ulMhm3BLF2LAHrzrTLIE5h2BAO_qNixKOYeVHcKaz1DVmUzZvM0Ll_BYQeXaNA/exec";
 
 var PRESUPUESTO_OPCIONES = [
-  { label: 'Ahora mismo solo busco contenido gratuito', key: 'gratis' },
-  { label: 'Menos de 150 €', key: 'menos150' },
-  { label: 'Entre 150 € y 1.000 €, ambos incluidos', key: 'entre150y1000' },
-  { label: 'Más de 1.000 €, si el programa encaja con lo que necesito', key: 'mas1000' }
+  { label: 'Ahora mismo solo quiero información gratuita', key: 'gratis' },
+  { label: 'Prefiero (o ya tengo) el plan Estándar, $120/mes', key: 'estandar' },
+  { label: 'Puedo y quiero el plan Premium, $1.000/año', key: 'premium' }
 ];
 
 var STEPS = [
   { t:'opt', k:'experiencia', q:'¿Cuánto tiempo llevas operando?', s:'Sé sincero, esto define si puedo ayudarte.', o:['Todavía no he empezado','Menos de 1 año','Entre 1 y 3 años','Más de 3 años'] },
   { t:'opt', k:'retiros', q:'¿Has retirado dinero del mercado alguna vez?', s:'Cuenta personal o fondeo, da igual.', o:['Nunca he retirado','Algún retiro suelto','Retiro casi todos los meses'] },
-  { t:'presupuesto', k:'inversion', q:'¿Qué presupuesto puedes y estás dispuesto a destinar a una mentoría individual si encaja con lo que necesitas?', s:'El acompañamiento individual requiere una inversión superior a 1.000 €. La clase es gratis en cualquier caso.' },
+  { t:'presupuesto', k:'inversion', q:'¿Qué plan de La Mina encaja contigo?', s:'La clase es gratis en cualquier caso, esto es solo para orientarte mejor después.' },
   { t:'area', k:'situacion', q:'¿Cuál es tu situación ahora mismo?', s:'Sé honesto. Esto lo leo yo.', ph:'Cuéntame dónde estás y qué quieres conseguir…' },
   { t:'text', k:'nombre', q:'¿Cómo te llamas?', s:'Nombre y apellido.', ph:'Escribe tu nombre aquí…' },
   { t:'email', k:'email', q:'¿A qué email te escribo?', s:'Revisa que esté bien escrito.', ph:'tunombre@email.com' },
@@ -181,7 +180,7 @@ var STEPS = [
       prev.push(payload);
       localStorage.setItem('lamina_leads', JSON.stringify(prev));
       localStorage.setItem('lamina_clase', '1');
-      // Para que, si pide la mentoría después, no tenga que responder otra vez estas mismas preguntas
+      // Para que, si pide el plan Premium después, no tenga que responder otra vez estas mismas preguntas
       sessionStorage.setItem('lamina_quiz_prefill', JSON.stringify({
         experiencia: data.experiencia,
         retiros: data.retiros,

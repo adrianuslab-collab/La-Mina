@@ -69,8 +69,8 @@
   <img class="logo" src="assets/logo-lamina.png" alt="LA MINA" />
 
   <div style="text-align:center;margin-bottom:22px;">
-    <h1 style="font-size:clamp(24px,4.4vw,34px);">Cuéntame en qué punto estás y veamos si podemos trabajar juntos</h1>
-    <p style="margin-top:12px;font-size:15.5px;color:#A6A29B;">Responde estas preguntas para solicitar la mentoría individual. Si tu solicitud cumple los criterios, podrás elegir un horario para hablar conmigo.</p>
+    <h1 style="font-size:clamp(24px,4.4vw,34px);">Solicita tu acceso al plan Premium</h1>
+    <p style="margin-top:12px;font-size:15.5px;color:#A6A29B;">Responde estas preguntas para solicitarlo. Si tu solicitud cumple los criterios, podrás elegir un horario para una breve llamada de confirmación.</p>
   </div>
 
   <div class="box" id="quiz">
@@ -80,11 +80,11 @@
 
   <div class="box exit-box hidden" id="exit-bajo-presupuesto">
     <div class="eyebrow">Ahora mismo no encaja</div>
-    <h2>Puedes empezar por la clase gratuita o conocer la comunidad</h2>
-    <p>Si más adelante quieres trabajar conmigo de forma individual, podrás volver a solicitar la mentoría.</p>
+    <h2>Puedes empezar por la clase gratuita o entrar con el plan Estándar</h2>
+    <p>Si más adelante quieres el plan Premium, podrás volver a solicitarlo.</p>
     <div class="exit-actions">
       <a class="primary" href="mentoria.html">Ver la clase gratuita</a>
-      <a class="secondary" href="comunidad.html">Conocer la comunidad</a>
+      <a class="secondary" href="comunidad.html">Ver planes de la comunidad</a>
     </div>
   </div>
 
@@ -132,14 +132,13 @@ var STEPS = [
     o: ['Todavía no he empezado', 'Menos de 1 año', 'Entre 1 y 3 años', 'Más de 3 años'] },
   { k: 'retiros', t: 'opt', q: '¿Has retirado beneficios de tu operativa alguna vez?', s: 'Puede ser de una cuenta personal o de una cuenta de fondeo.',
     o: ['Todavía no he operado en real', 'He operado en real, pero todavía no he retirado beneficios', 'He hecho alguna retirada puntual', 'He realizado retiradas con frecuencia en los últimos meses'] },
-  { k: 'presupuesto', t: 'gate', q: '¿Qué presupuesto puedes y estás dispuesto a destinar a una mentoría individual si encaja con lo que necesitas?', s: 'El acompañamiento individual requiere una inversión superior a 1.000 €. Nos referimos al precio de la formación, separado del capital para operar.',
+  { k: 'presupuesto', t: 'gate', q: '¿Qué plan de La Mina encaja contigo?', s: 'El plan Premium ($1.000/año) da acceso a la sala Premium, pero requiere una breve llamada de confirmación antes de activarlo.',
     o: [
-      { label: 'Ahora mismo solo busco contenido gratuito', key: 'gratis' },
-      { label: 'Menos de 150 €', key: 'menos150' },
-      { label: 'Entre 150 € y 1.000 €, ambos incluidos', key: 'entre150y1000' },
-      { label: 'Más de 1.000 €, si el programa encaja con lo que necesito', key: 'mas1000' }
+      { label: 'Ahora mismo solo quiero información gratuita', key: 'gratis' },
+      { label: 'Prefiero (o ya tengo) el plan Estándar, $120/mes', key: 'estandar' },
+      { label: 'Puedo y quiero el plan Premium, $1.000/año', key: 'premium' }
     ] },
-  { k: 'situacion', t: 'area', q: '¿Cuál es tu situación actual y qué te gustaría trabajar conmigo?', s: 'Cuéntame qué estás haciendo ahora, qué te cuesta más y qué te gustaría mejorar. Con unas pocas frases es suficiente.', ph: 'Cuéntame tu situación…' },
+  { k: 'situacion', t: 'area', q: '¿Cuál es tu situación actual y qué te gustaría mejorar?', s: 'Cuéntame qué estás haciendo ahora, qué te cuesta más y qué te gustaría conseguir. Con unas pocas frases es suficiente.', ph: 'Cuéntame tu situación…' },
   { k: 'nombre', t: 'text', q: '¿Cómo te llamas?', s: 'Nombre y apellidos.', ph: 'Escribe tu nombre aquí…' },
   { k: 'email', t: 'email', q: '¿A qué email podemos escribirte sobre tu solicitud?', s: 'Comprueba que esté bien escrito.', ph: 'tunombre@email.com' },
   { k: 'telefono', t: 'tel', q: '¿Cuál es tu teléfono de contacto?', s: 'Se utilizará para gestionar tu solicitud y la llamada.' }
@@ -180,7 +179,7 @@ var STEPS = [
             presupuestoKey = st.o[n].key;
             presupuestoLabel = st.o[n].label;
             data[st.k] = presupuestoLabel;
-            if (presupuestoKey !== 'mas1000') {
+            if (presupuestoKey !== 'premium') {
               track('filtro_resultado', { calificado: false });
               document.getElementById('quiz').classList.add('hidden');
               document.getElementById('exit-bajo-presupuesto').classList.remove('hidden');
@@ -211,7 +210,7 @@ var STEPS = [
   }
 
   function consentBlock(){
-    return '<label class="consent"><input type="checkbox" id="confirmacion" /> Estoy solicitando una mentoría individual y quiero valorar si encaja conmigo.</label>' +
+    return '<label class="consent"><input type="checkbox" id="confirmacion" /> Estoy solicitando acceso al plan Premium y quiero valorar si encaja conmigo.</label>' +
            '<label class="consent"><input type="checkbox" id="consentimiento" /> Acepto recibir comunicaciones comerciales sobre La Mina.</label>' +
            '<p style="margin-top:14px;font-size:12.5px;color:#6E6A65;">Tus datos se usan solo para gestionar esta solicitud. Más info en <a href="privacidad.html" target="_blank">la política de privacidad</a>.</p>';
   }
@@ -292,7 +291,7 @@ var STEPS = [
     presupuestoKey = pre.presupuestoKey;
     presupuestoLabel = pre.presupuestoLabel || '';
 
-    if (presupuestoKey !== 'mas1000') {
+    if (presupuestoKey !== 'premium') {
       track('filtro_resultado', { calificado: false });
       document.getElementById('quiz').classList.add('hidden');
       document.getElementById('exit-bajo-presupuesto').classList.remove('hidden');
@@ -341,7 +340,7 @@ var STEPS = [
 
   function mostrarError(codigo){
     var mensajes = {
-      presupuesto_no_califica: 'Parece que tu presupuesto no encaja con la mentoría individual ahora mismo.',
+      presupuesto_no_califica: 'Parece que el plan Premium no encaja con tu presupuesto ahora mismo.',
       campos_incompletos: 'Falta algún dato obligatorio. Revisa el formulario.',
       email_invalido: 'El email no parece válido.',
       formspree_no_configurado: 'La recepción de solicitudes todavía no está activa. Vuelve a intentarlo en unos minutos.',
