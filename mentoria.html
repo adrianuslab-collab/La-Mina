@@ -15,47 +15,42 @@
   img { display: block; max-width: 100%; }
   a { color: #F07C1F; text-decoration: none; }
   a:hover { color: #FF9A3D; }
-  h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -.03em; line-height: 1.06; }
+  h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -.03em; line-height: 1.08; }
   p { margin: 0; }
-  input, textarea, button { font-family: inherit; }
-  ::placeholder { color: #6E6A65; }
-  @keyframes pz { 0% { box-shadow: 0 0 0 0 rgba(240,124,31,.55); } 70% { box-shadow: 0 0 0 10px rgba(240,124,31,0); } 100% { box-shadow: 0 0 0 0 rgba(240,124,31,0); } }
   @keyframes banner-blink { 0%,100% { box-shadow: 0 0 0 0 rgba(240,124,31,.25); border-color: rgba(240,124,31,.5); } 50% { box-shadow: 0 0 16px 2px rgba(240,124,31,.55); border-color: rgba(240,124,31,.95); } }
-  .countdown-banner { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 7px 18px; border-radius: 999px; background: #151312; border: 1px solid rgba(240,124,31,.5); color: #FFB06A; font-size: 13px; font-weight: 600; letter-spacing: -.01em; animation: banner-blink 2.2s ease-in-out infinite; margin-bottom: 18px; }
+  .countdown-banner { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 7px 18px; border-radius: 999px; background: #151312; border: 1px solid rgba(240,124,31,.5); color: #FFB06A; font-size: 13px; font-weight: 600; letter-spacing: -.01em; animation: banner-blink 2.2s ease-in-out infinite; }
   .bg1 { position: fixed; inset: 0; z-index: 0; background: url('assets/bg-mina.png') center/cover no-repeat; }
   .bg2 { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 74% 60% at 50% 34%, rgba(6,5,5,.80) 0%, rgba(6,5,5,.70) 55%, rgba(6,5,5,.58) 100%); }
-  main { position: relative; z-index: 1; padding: 44px 20px 64px; max-width: 760px; margin: 0 auto; }
-  .logo { width: min(300px,66vw); height: auto; margin: 0 auto 26px; }
-  .lead { margin-top: 14px; text-align: center; font-size: clamp(15px,2.1vw,17.5px); line-height: 1.55; color: #A6A29B; }
-  .video { position: relative; margin: 26px auto 0; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(240,124,31,.4); background: #131110; box-shadow: 0 30px 90px rgba(0,0,0,.6); }
-  .video > div, .video > button { position: absolute; inset: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: rgba(6,5,5,.55); border: 0; cursor: pointer; padding: 0; }
-  .circle { width: 68px; height: 68px; border-radius: 50%; background: #F07C1F; display: grid; place-items: center; animation: pz 3.2s ease-out infinite; }
-  .circle svg { width: 27px; height: 27px; fill: #0B0908; }
-  .cta { display: block; width: 100%; margin-top: 18px; padding: 21px 24px; border-radius: 12px; border: 0; background: #F07C1F; color: #0B0908; font-size: clamp(15px,2.4vw,18px); font-weight: 800; letter-spacing: .03em; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 0 1px rgba(240,124,31,.5), 0 16px 48px rgba(240,124,31,.3); }
-  .cta:hover { background: #FF9A3D; color: #0B0908; }
-  .box { margin-top: 20px; position: relative; border-radius: 18px; border: 1px solid rgba(255,255,255,.10); background: rgba(19,17,16,.92); padding: clamp(26px,4vw,40px) clamp(20px,3.4vw,36px); min-height: 420px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,.55); }
-  .bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: rgba(255,255,255,.07); }
-  .bar i { display: block; height: 100%; background: #F07C1F; transition: width .4s cubic-bezier(.16,1,.3,1); }
-  .qn { font-size: 12.5px; font-weight: 800; letter-spacing: .2em; color: #F07C1F; margin-bottom: 14px; }
-  .qq { font-size: clamp(21px,3.6vw,32px); font-weight: 800; letter-spacing: -.025em; line-height: 1.14; }
-  .qs { margin-top: 10px; font-size: 14.5px; color: #7E7A74; }
-  .opts { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
-  .opt { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 17px 18px; border-radius: 12px; background: rgba(30,27,25,.9); border: 1px solid rgba(255,255,255,.10); color: #F4F1EA; font-size: 16px; font-weight: 600; cursor: pointer; transition: border-color .2s, background .2s, transform .15s; }
-  .opt:hover { border-color: #F07C1F; background: rgba(240,124,31,.10); transform: translateX(4px); }
-  .opt i { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); font-style: normal; font-size: 12px; font-weight: 800; color: #7E7A74; }
-  .field { margin-top: 26px; }
-  .field input { width: 100%; background: transparent; border: 0; border-bottom: 1.5px solid rgba(240,124,31,.55); color: #F4F1EA; font-size: clamp(18px,2.4vw,22px); padding: 10px 2px; outline: none; }
-  .field textarea { width: 100%; min-height: 120px; resize: vertical; border-radius: 12px; border: 1.5px solid rgba(255,255,255,.10); background: rgba(30,27,25,.85); color: #F4F1EA; font-size: 16px; line-height: 1.5; padding: 16px; outline: none; }
-  .foot { margin-top: auto; padding-top: 28px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .back { background: none; border: 0; color: #7E7A74; font-size: 13.5px; cursor: pointer; padding: 6px 2px; }
-  .next { border: 0; border-radius: 12px; background: #F07C1F; color: #0B0908; font-size: 15px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 16px 28px; cursor: pointer; box-shadow: 0 12px 36px rgba(240,124,31,.24); }
-  .err { font-size: 13px; color: #F07C1F; }
-  .call { margin-top: 22px; padding: 26px; border-radius: 16px; border: 1px solid rgba(240,124,31,.32); background: rgba(24,18,13,.85); text-align: center; }
-  .call a { display: inline-block; margin-top: 20px; padding: 19px 32px; border-radius: 12px; background: #F07C1F; color: #0B0908; font-size: 15px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; box-shadow: 0 14px 44px rgba(240,124,31,.26); }
-  .call a:hover { background: #FF9A3D; color: #0B0908; }
-  .hidden { display: none !important; }
-  .links { margin-top: 26px; display: flex; justify-content: center; gap: 20px; font-size: 12.5px; color: #6E6A65; }
-  .links a, .links button { color: #6E6A65; background: none; border: 0; font-size: 12.5px; cursor: pointer; }
+  main { position: relative; z-index: 1; }
+  section { padding: 8px 20px 56px; max-width: 760px; margin: 0 auto; }
+  .hero { padding-top: 40px; text-align: center; }
+  .logo { width: min(260px,60vw); height: auto; margin: 0 auto 24px; }
+  .lead { margin-top: 14px; font-size: clamp(15px,2.1vw,17.5px); line-height: 1.55; color: #A6A29B; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 11.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #7E7A74; margin-bottom: 12px; }
+  .eyebrow span { width: 22px; height: 1px; background: #F07C1F; }
+  .cta-row { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .cta-row a { display: block; padding: 18px 22px; border-radius: 12px; font-size: 15px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; text-align: center; }
+  .cta-row a.primary { background: #F07C1F; color: #0B0908; box-shadow: 0 14px 44px rgba(240,124,31,.26); }
+  .cta-row a.secondary { background: #151312; color: #F4F1EA; border: 1px solid rgba(255,255,255,.16); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 14px; margin-top: 8px; }
+  .card { padding: 26px; border-radius: 14px; background: rgba(19,17,16,.86); border: 1px solid rgba(255,255,255,.10); }
+  .card.yes { background: rgba(24,18,13,.86); border-color: rgba(240,124,31,.32); }
+  .card .tag { font-size: 11.5px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 16px; }
+  .card.yes .tag { color: #FFB06A; }
+  .card.no .tag { color: #7E7A74; }
+  .card .item { display: flex; gap: 10px; font-size: 15px; line-height: 1.5; margin-top: 12px; }
+  .card.yes .item { color: #C7C3BC; }
+  .card.no .item { color: #8E8A84; }
+  .pending { margin-top: 8px; padding: 22px 24px; border-radius: 14px; border: 1.5px dashed rgba(240,124,31,.4); background: rgba(240,124,31,.05); }
+  .pending .tag { display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #FFB06A; background: rgba(240,124,31,.14); border: 1px solid rgba(240,124,31,.4); padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
+  .pending p { font-size: 14.5px; line-height: 1.55; color: #8E8A84; }
+  .info-box { padding: 26px 28px; border-radius: 14px; background: rgba(19,17,16,.86); border: 1px solid rgba(255,255,255,.10); }
+  .info-box + .info-box { margin-top: 14px; }
+  .info-box h3 { font-size: 18px; }
+  .info-box p { margin-top: 10px; font-size: 15px; line-height: 1.55; color: #A6A29B; }
+  footer { padding: 38px 20px 34px; border-top: 1px solid rgba(255,255,255,.07); }
+  footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 24px; margin-bottom: 16px; }
+  footer nav a { color: #6E6A65; font-size: 13px; }
 </style>
 </head>
 <body>
@@ -63,193 +58,80 @@
 <div class="bg2"></div>
 
 <main>
-  <div style="text-align:center;">
-    <div class="countdown-banner">Apertura <span style="text-transform:uppercase;">01/10</span> · Faltan <span id="countdown-days">–</span></div>
-  </div>
-  <img class="logo" src="assets/logo-lamina.png" alt="LA MINA" />
-
-  <h1 style="font-size:clamp(26px,5.2vw,46px);text-align:center;">Te enseño gratis el sistema con el que llevo <span style="color:#F07C1F;">más de $1,2M retirados</span></h1>
-  <p class="lead">Una clase completa, sin coste y sin tarjeta. Rellena tus datos y se desbloquea al instante.</p>
-
-  <div id="funnel" class="hidden">
-  <div class="video">
-    <button id="lock" type="button">
-      <span class="circle"><svg viewBox="0 0 24 24"><path d="M17.5 9.5h-.8V7.2a4.7 4.7 0 1 0-9.4 0v2.3h-.8A1.7 1.7 0 0 0 4.8 11.2v8A1.7 1.7 0 0 0 6.5 20.9h11a1.7 1.7 0 0 0 1.7-1.7v-8a1.7 1.7 0 0 0-1.7-1.7Zm-8.4-2.3a2.9 2.9 0 1 1 5.8 0v2.3H9.1V7.2Z"/></svg></span>
-      <b style="font-size:13.5px;font-weight:700;color:#F4F1EA;">Clase bloqueada · rellena tus datos para verla</b>
-    </button>
-    <div id="player" class="hidden">
-      <span class="circle" style="animation:none;"><svg viewBox="0 0 24 24" style="margin-left:3px;"><path d="M8 5v14l11-7L8 5Z"/></svg></span>
-      <span style="position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:12px;color:#7E7A74;">Vídeo pendiente de subir</span>
+  <section class="hero">
+    <div style="margin-bottom:22px;"><div class="countdown-banner">Apertura <span style="text-transform:uppercase;">01/10</span> · Faltan <span id="countdown-days">–</span></div></div>
+    <img class="logo" src="assets/logo-lamina.png" alt="LA MINA" />
+    <h1 style="font-size:clamp(28px,5vw,46px);">Mentoría individual con <span style="color:#F07C1F;">Adrianus</span></h1>
+    <p class="lead">Un acompañamiento 1 a 1, pensado para quien ya opera y quiere trabajar su situación concreta conmigo, no una formación genérica en grupo.</p>
+    <div class="cta-row">
+      <a class="primary" href="solicitud.html">Quiero solicitar la mentoría</a>
+      <a class="secondary" href="clase.html">Ver la clase gratuita antes</a>
     </div>
-  </div>
+  </section>
 
-  <div id="call" class="call hidden">
-    <div style="font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#F07C1F;">Siguiente paso</div>
-    <h2 style="margin-top:12px;font-size:clamp(22px,3.6vw,30px);">¿Te han quedado dudas? Escríbeme.</h2>
-    <p style="margin-top:12px;font-size:15.5px;line-height:1.55;color:#A6A29B;max-width:470px;margin-left:auto;margin-right:auto;">Cuéntame dónde estás y qué te falta. Te leo yo mismo y te respondo.</p>
-    <div style="margin-top:22px;max-width:440px;margin-left:auto;margin-right:auto;text-align:left;">
-      <textarea id="call-msg" placeholder="Escribe tu mensaje aquí…" style="width:100%;min-height:110px;resize:vertical;border-radius:12px;border:1.5px solid rgba(255,255,255,.10);background:rgba(30,27,25,.85);color:#F4F1EA;font-size:15px;line-height:1.5;padding:14px;outline:none;font-family:inherit;"></textarea>
-      <button id="call-send" type="button" style="display:block;width:100%;margin-top:12px;padding:17px 24px;border-radius:12px;border:0;background:#F07C1F;color:#0B0908;font-size:15px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;cursor:pointer;">Enviar mensaje</button>
-      <div id="call-sent" class="hidden" style="margin-top:12px;text-align:center;font-size:13.5px;color:#7E7A74;">¡Mensaje enviado! Te responderé pronto.</div>
+  <section>
+    <div class="eyebrow"><span></span>Para quién es</div>
+    <h2 style="font-size:clamp(26px,4.2vw,38px);">Esto no es para todo el mundo.</h2>
+    <div class="cards" style="margin-top:24px;">
+      <div class="card yes">
+        <div class="tag">Es para ti si</div>
+        <div class="item"><span style="color:#F07C1F;">✓</span>Ya has hecho tus primeros retiros pero no eres consistente</div>
+        <div class="item"><span style="color:#F07C1F;">✓</span>Saltas de estrategia en estrategia y quieres cerrar el círculo</div>
+        <div class="item"><span style="color:#F07C1F;">✓</span>Quieres trabajar tu situación concreta, no teoría genérica</div>
+        <div class="item"><span style="color:#F07C1F;">✓</span>Puedes y quieres invertir en un acompañamiento individual</div>
+      </div>
+      <div class="card no">
+        <div class="tag">No es para ti si</div>
+        <div class="item"><span style="color:#6E6A65;">✕</span>Buscas señales para copiar sin entender nada</div>
+        <div class="item"><span style="color:#6E6A65;">✕</span>Esperas resultados en dos semanas</div>
+        <div class="item"><span style="color:#6E6A65;">✕</span>No vas a hacer backtesting ni revisar tus operaciones</div>
+        <div class="item"><span style="color:#6E6A65;">✕</span>Quieres que alguien opere por ti</div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div id="quizwrap">
-    <button class="cta" id="scrollcta" type="button">Recibir clase gratis ya ↓</button>
-
-    <div style="margin-top:44px;text-align:center;">
-      <h2 style="font-size:clamp(26px,4.6vw,42px);">Rellena tus datos para recibir la <span style="color:#F07C1F;">clase gratis</span></h2>
-      <p style="margin-top:12px;font-size:15.5px;color:#A6A29B;">7 preguntas rápidas. Al terminar se desbloquea entera, sin coste.</p>
+  <section>
+    <div class="eyebrow"><span></span>Qué incluye</div>
+    <h2 style="font-size:clamp(26px,4.2vw,38px);margin-bottom:16px;">Cómo funciona el acompañamiento.</h2>
+    <div class="pending">
+      <span class="tag">Pendiente de contenido real</span>
+      <p>Aquí va el detalle real de qué incluye la mentoría y cómo se desarrolla (formato de las sesiones, frecuencia, duración del acompañamiento, qué se revisa en cada contacto, etc.). Dime esto y lo dejo publicado con tu texto exacto — no voy a inventar servicios, número de sesiones ni duración.</p>
     </div>
+  </section>
 
-    <div class="box" id="quiz">
-      <div class="bar"><i id="bar" style="width:6%"></i></div>
-      <div id="body"></div>
+  <section>
+    <div class="info-box">
+      <h3>En qué se diferencia de la comunidad</h3>
+      <p>La comunidad es un espacio grupal: aprendes rodeado de otros traders, a tu ritmo. La mentoría individual es un acompañamiento 1 a 1 centrado en tu situación concreta — no es contenido compartido, es trabajar directamente conmigo tu caso.</p>
     </div>
-  </div>
-  </div>
+    <div class="info-box">
+      <h3>Inversión</h3>
+      <p>La mentoría individual requiere una inversión superior a 1.000 €.</p>
+    </div>
+    <div class="info-box">
+      <h3>Para qué sirve la llamada</h3>
+      <p>Una conversación de 15–20 minutos para conocer tu situación, resolver tus dudas sobre el programa y valorar si la mentoría encaja contigo. No es una clase particular gratuita ni una promesa de resultados de trading.</p>
+    </div>
+  </section>
 
-  <div id="soon" style="margin-top:26px;padding:clamp(30px,5vw,48px) clamp(20px,3.4vw,36px);border-radius:18px;border:1px solid rgba(255,255,255,.10);background:rgba(19,17,16,.92);text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.55);">
-    <div style="font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#F07C1F;">Muy pronto</div>
-    <h2 style="margin-top:14px;font-size:clamp(22px,3.6vw,30px);">Clase todavía no disponible</h2>
-    <p style="margin-top:12px;font-size:15.5px;line-height:1.55;color:#A6A29B;max-width:460px;margin-left:auto;margin-right:auto;">La estoy grabando ahora mismo. En cuanto esté lista, podrás verla aquí gratis.</p>
-  </div>
+  <section style="text-align:center;">
+    <div class="cta-row">
+      <a class="primary" href="solicitud.html">Quiero solicitar la mentoría</a>
+      <a class="secondary" href="comunidad.html">Prefiero la comunidad</a>
+    </div>
+  </section>
 
-  <div class="links">
-    <a href="index.html">← Volver al inicio</a>
-    <button type="button" id="reset" class="hidden">Empezar de nuevo</button>
-  </div>
+  <footer>
+    <nav>
+      <a href="privacidad.html">Política de privacidad</a>
+      <a href="terminos.html">Términos de uso</a>
+      <a href="condiciones.html">Condiciones de acceso</a>
+    </nav>
+    <div style="text-align:center;font-size:11.5px;color:#6E6A65;letter-spacing:.08em;">© 2026 LA MINA · entraenlamina.com</div>
+  </footer>
 </main>
 
-<script>
-// Cambia a true en cuanto subas el vídeo de la clase para reactivar el funnel:
-var CLASE_DISPONIBLE = true;
-var CLASE_YOUTUBE_ID = 'JIyHcVA1WkA';
-
-// Pega aquí tu endpoint (Formspree u otro) para recibir los leads por email:
-var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxdKoh8ulMhm3BLF2LAHrzrTLIE5h2BAO_qNixKOYeVHcKaz1DVmUzZvM0Ll_BYQeXaNA/exec";
-
-var STEPS = [
-  { t:'opt', k:'experiencia', q:'¿Cuánto tiempo llevas operando?', s:'Sé sincero, esto define si puedo ayudarte.', o:['Todavía no he empezado','Menos de 1 año','Entre 1 y 3 años','Más de 3 años'] },
-  { t:'opt', k:'retiros', q:'¿Has retirado dinero del mercado alguna vez?', s:'Cuenta personal o fondeo, da igual.', o:['Nunca he retirado','Algún retiro suelto','Retiro casi todos los meses'] },
-  { t:'text', k:'nombre', q:'¿Cómo te llamas?', s:'Nombre y apellido.', ph:'Escribe tu nombre aquí…' },
-  { t:'email', k:'email', q:'¿A qué email te escribo?', s:'Revisa que esté bien escrito.', ph:'tunombre@email.com' },
-  { t:'area', k:'situacion', q:'¿Cuál es tu situación ahora mismo?', s:'Sé honesto. Esto lo leo yo.', ph:'Cuéntame dónde estás y qué quieres conseguir…' },
-  { t:'opt', k:'inversion', q:'¿Cuánto estás dispuesto a invertir para mejorar tu trading?', s:'La clase es gratis. Esto es para saber si encajas en la comunidad.', o:['Nada, solo quiero información gratis','Menos de $150','Entre $150 y $1.000','Más de $1.000 si veo que funciona'] },
-  { t:'text', k:'telefono', q:'Por último, ¿tu teléfono?', s:'Con prefijo internacional.', ph:'+34 600 000 000' }
-];
-
-(function(){
-  if (!CLASE_DISPONIBLE) { return; }
-  document.getElementById('funnel').classList.remove('hidden');
-  document.getElementById('soon').classList.add('hidden');
-  document.getElementById('reset').classList.remove('hidden');
-
-  var i = 0, data = {}, body = document.getElementById('body'), bar = document.getElementById('bar');
-
-  function esc(s){ return String(s).replace(/"/g,'&quot;'); }
-
-  function unlock(){
-    document.getElementById('quizwrap').classList.add('hidden');
-    document.getElementById('lock').classList.add('hidden');
-    var player = document.getElementById('player');
-    player.classList.remove('hidden');
-    player.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + CLASE_YOUTUBE_ID + '?autoplay=1&rel=0" title="Clase gratis LA MINA" frameborder="0" allow="accelerate; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>';
-    document.getElementById('call').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function send(){
-    var payload = Object.assign({ _subject: 'Nuevo lead LA MINA — ' + (data.nombre || 'sin nombre'), fecha: new Date().toISOString() }, data);
-    try {
-      var prev = JSON.parse(localStorage.getItem('lamina_leads') || '[]');
-      prev.push(payload);
-      localStorage.setItem('lamina_leads', JSON.stringify(prev));
-      localStorage.setItem('lamina_clase', '1');
-    } catch(e) {}
-    if (FORM_ENDPOINT) {
-      // text/plain evita que el navegador haga un preflight CORS, que Google Apps Script no gestiona bien
-      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(function(){});
-    }
-  }
-
-  function foot(label){
-    return '<div class="foot">' + (i > 0 ? '<button class="back" type="button" id="back">← Atrás</button>' : '') +
-      '<button class="next" type="button" id="next">' + label + ' →</button><span class="err" id="err"></span></div>';
-  }
-
-  function render(){
-    var st = STEPS[i];
-    bar.style.width = Math.round(6 + (i / STEPS.length) * 94) + '%';
-    var head = '<div class="qn">' + String(i+1).padStart(2,'0') + ' → ' + String(STEPS.length).padStart(2,'0') + '</div>' +
-      '<div class="qq">' + st.q + '</div><div class="qs">' + st.s + '</div>';
-
-    if (st.t === 'opt') {
-      body.innerHTML = head + '<div class="opts">' + st.o.map(function(o,n){
-        return '<button class="opt" type="button" data-v="' + n + '"><i>' + String.fromCharCode(65+n) + '</i>' + o + '</button>';
-      }).join('') + '</div>' + (i > 0 ? '<div class="foot"><button class="back" type="button" id="back">← Atrás</button></div>' : '');
-      Array.prototype.forEach.call(body.querySelectorAll('.opt'), function(b){
-        b.onclick = function(){ data[st.k] = st.o[+b.dataset.v]; step(); };
-      });
-    } else if (st.t === 'area') {
-      body.innerHTML = head + '<div class="field"><textarea id="in" placeholder="' + esc(st.ph) + '">' + (data[st.k] || '') + '</textarea></div>' + foot('Siguiente');
-      wire(st);
-    } else {
-      body.innerHTML = head + '<div class="field"><input id="in" type="' + (st.t === 'email' ? 'email' : 'text') + '" placeholder="' + esc(st.ph) + '" value="' + esc(data[st.k] || '') + '" /></div>' + foot(i === STEPS.length - 1 ? 'Desbloquear clase' : 'Siguiente');
-      wire(st);
-    }
-    var back = document.getElementById('back');
-    if (back) back.onclick = function(){ if (i > 0) { i--; render(); } };
-  }
-
-  function wire(st){
-    var input = document.getElementById('in'), next = document.getElementById('next'), err = document.getElementById('err');
-    input.focus();
-    function go(){
-      var v = (input.value || '').trim();
-      if (st.t === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { err.textContent = 'Ese email no parece correcto.'; return; }
-      if (st.k === 'telefono' && v.replace(/\D/g,'').length < 6) { err.textContent = 'Escribe un número válido.'; return; }
-      if (v.length < 2) { err.textContent = 'Rellena este campo para continuar.'; return; }
-      data[st.k] = v; step();
-    }
-    next.onclick = go;
-    input.addEventListener('keydown', function(e){
-      if (e.key === 'Enter' && input.tagName !== 'TEXTAREA') { e.preventDefault(); go(); }
-    });
-  }
-
-  function step(){
-    i++;
-    if (i >= STEPS.length) { bar.style.width = '100%'; send(); unlock(); return; }
-    render();
-  }
-
-  function toQuiz(){ document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  document.getElementById('lock').onclick = toQuiz;
-  document.getElementById('scrollcta').onclick = toQuiz;
-  document.getElementById('reset').onclick = function(){
-    try { localStorage.removeItem('lamina_clase'); } catch(e) {}
-    location.reload();
-  };
-
-  document.getElementById('call-send').onclick = function(){
-    var btn = this, msgEl = document.getElementById('call-msg');
-    var mensaje = (msgEl.value || '').trim();
-    if (!mensaje) { msgEl.focus(); return; }
-    var payload = Object.assign({ tipo: 'Mensaje', fecha: new Date().toISOString(), mensaje: mensaje }, data);
-    if (FORM_ENDPOINT) {
-      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(function(){});
-    }
-    btn.disabled = true;
-    btn.textContent = 'Enviado ✓';
-    msgEl.disabled = true;
-    document.getElementById('call-sent').classList.remove('hidden');
-  };
-
-  try { if (localStorage.getItem('lamina_clase') === '1') { unlock(); } } catch(e) {}
-  render();
-})();
-</script>
+<script src="analytics.js"></script>
 <script>
 (function(){
   var target = new Date('2026-10-01T00:00:00');

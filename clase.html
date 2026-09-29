@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>La Mina</title>
+<link rel="icon" type="image/png" href="assets/logo-icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: #060505; color: #F4F1EA; font-family: 'Schibsted Grotesk', system-ui, sans-serif; overflow-x: hidden; text-wrap: pretty; }
+  * { box-sizing: border-box; }
+  img { display: block; max-width: 100%; }
+  a { color: #F07C1F; text-decoration: none; }
+  a:hover { color: #FF9A3D; }
+  h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -.03em; line-height: 1.06; }
+  p { margin: 0; }
+  @keyframes banner-blink { 0%,100% { box-shadow: 0 0 0 0 rgba(240,124,31,.25); border-color: rgba(240,124,31,.5); } 50% { box-shadow: 0 0 16px 2px rgba(240,124,31,.55); border-color: rgba(240,124,31,.95); } }
+  .countdown-banner { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 7px 18px; border-radius: 999px; background: #151312; border: 1px solid rgba(240,124,31,.5); color: #FFB06A; font-size: 13px; font-weight: 600; letter-spacing: -.01em; animation: banner-blink 2.2s ease-in-out infinite; margin-bottom: 18px; }
+  .bg1 { position: fixed; inset: 0; z-index: 0; background: url('assets/bg-mina.png') center/cover no-repeat; }
+  .bg2 { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 74% 60% at 50% 34%, rgba(6,5,5,.80) 0%, rgba(6,5,5,.70) 55%, rgba(6,5,5,.58) 100%); }
+  main { position: relative; z-index: 1; padding: 44px 20px 64px; max-width: 760px; margin: 0 auto; }
+  .logo { width: min(300px,66vw); height: auto; margin: 0 auto 26px; }
+  .lead { margin-top: 14px; text-align: center; font-size: clamp(15px,2.1vw,17.5px); line-height: 1.55; color: #A6A29B; }
+  .video { position: relative; margin: 26px auto 0; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(240,124,31,.4); background: #131110; box-shadow: 0 30px 90px rgba(0,0,0,.6); cursor: pointer; }
+  .video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .video .overlay { position: absolute; inset: 0; background: rgba(6,5,5,.32); display: grid; place-items: center; }
+  .circle { width: 68px; height: 68px; border-radius: 50%; background: #F07C1F; display: grid; place-items: center; animation: pz 3.2s ease-out infinite; }
+  .circle svg { width: 27px; height: 27px; fill: #0B0908; }
+  @keyframes pz { 0% { box-shadow: 0 0 0 0 rgba(240,124,31,.55); } 70% { box-shadow: 0 0 0 10px rgba(240,124,31,0); } 100% { box-shadow: 0 0 0 0 rgba(240,124,31,0); } }
+  .next-steps { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
+  .next-steps a { display: flex; align-items: center; gap: 14px; padding: 19px 22px; border-radius: 12px; font-size: 15.5px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
+  .next-steps a.primary { background: #F07C1F; color: #0B0908; box-shadow: 0 14px 44px rgba(240,124,31,.26); }
+  .next-steps a.secondary { background: #151312; color: #F4F1EA; border: 1px solid rgba(255,255,255,.16); }
+  .next-steps small { display: block; margin-top: 2px; font-size: 12px; font-weight: 600; text-transform: none; letter-spacing: 0; opacity: .74; }
+  .links { margin-top: 26px; display: flex; justify-content: center; gap: 20px; font-size: 12.5px; color: #6E6A65; }
+</style>
+</head>
+<body>
+<div class="bg1"></div>
+<div class="bg2"></div>
+
+<main>
+  <div style="text-align:center;">
+    <div class="countdown-banner">Apertura <span style="text-transform:uppercase;">01/10</span> · Faltan <span id="countdown-days">–</span></div>
+  </div>
+  <img class="logo" src="assets/logo-lamina.png" alt="LA MINA" />
+
+  <h1 style="font-size:clamp(26px,5.2vw,46px);text-align:center;">Te enseño gratis el sistema con el que llevo <span style="color:#F07C1F;">más de $1,2M retirados</span></h1>
+  <p class="lead">Una clase completa, sin coste y sin dejar tus datos.</p>
+
+  <div class="video" id="promo-video">
+    <img src="https://i.ytimg.com/vi/JIyHcVA1WkA/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/JIyHcVA1WkA/hqdefault.jpg'" alt="Clase gratis LA MINA" />
+    <div class="overlay"><span class="circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z"/></svg></span></div>
+  </div>
+
+  <div class="next-steps">
+    <a class="primary" href="mentoria.html">Solicitar mentoría individual<small>Acompañamiento 1 a 1 conmigo</small></a>
+    <a class="secondary" href="comunidad.html">Conocer la comunidad<small>Acceso directo, sin llamada</small></a>
+  </div>
+
+  <div class="links">
+    <a href="index.html">← Volver al inicio</a>
+  </div>
+</main>
+
+<script src="analytics.js"></script>
+<script>track('clase_vista');</script>
+<script>
+document.getElementById('promo-video').addEventListener('click', function(){
+  track('video_reproducido');
+  this.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/JIyHcVA1WkA?autoplay=1&rel=0" title="Clase gratis LA MINA" frameborder="0" allow="accelerate; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>';
+}, { once: true });
+</script>
+<script>
+(function(){
+  var target = new Date('2026-10-01T00:00:00');
+  var el = document.getElementById('countdown-days');
+  function update(){
+    var diff = target - new Date();
+    var days = Math.max(0, Math.ceil(diff / 86400000));
+    el.textContent = days + (days === 1 ? ' día' : ' días');
+  }
+  update();
+  setInterval(update, 3600000);
+})();
+</script>
+</body>
+</html>

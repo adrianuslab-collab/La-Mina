@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>La Mina</title>
+<link rel="icon" type="image/png" href="assets/logo-icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: #060505; color: #F4F1EA; font-family: 'Schibsted Grotesk', system-ui, sans-serif; overflow-x: hidden; }
+  * { box-sizing: border-box; }
+  a { color: #F07C1F; text-decoration: none; }
+  h1, h2 { margin: 0; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+  p { margin: 0; }
+  .bg1 { position: fixed; inset: 0; z-index: 0; background: url('assets/bg-mina.png') center/cover no-repeat; }
+  .bg2 { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 74% 60% at 50% 34%, rgba(6,5,5,.80) 0%, rgba(6,5,5,.70) 55%, rgba(6,5,5,.58) 100%); }
+  main { position: relative; z-index: 1; padding: 30px 16px 50px; max-width: 900px; margin: 0 auto; }
+  .logo { width: min(200px,50vw); height: auto; margin: 0 auto 20px; display: block; }
+  .head { text-align: center; margin-bottom: 20px; }
+  .head p { margin-top: 10px; font-size: 15px; color: #A6A29B; }
+  .panel { border-radius: 18px; border: 1px solid rgba(255,255,255,.10); background: rgba(19,17,16,.92); min-height: 420px; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,.55); }
+  .state { text-align: center; padding: clamp(40px,6vw,60px) clamp(20px,4vw,34px); }
+  .state .eyebrow { font-size: 11.5px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #7E7A74; margin-bottom: 14px; }
+  .state h2 { font-size: clamp(22px,3.6vw,28px); }
+  .state p { margin-top: 12px; font-size: 15px; line-height: 1.55; color: #A6A29B; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .state a.cta, .state button.cta { display: inline-block; margin-top: 22px; padding: 16px 26px; border-radius: 12px; background: #F07C1F; color: #0B0908; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; font-size: 14px; border: 0; cursor: pointer; }
+  .spinner { width: 34px; height: 34px; border-radius: 50%; border: 3px solid rgba(240,124,31,.25); border-top-color: #F07C1F; margin: 0 auto; animation: spin 0.9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hidden { display: none !important; }
+  #calendly-embed { min-width: 320px; height: 720px; }
+  .back-link { display: block; text-align: center; margin-top: 22px; font-size: 13px; color: #6E6A65; }
+</style>
+</head>
+<body>
+<div class="bg1"></div>
+<div class="bg2"></div>
+
+<main>
+  <img class="logo" src="assets/logo-lamina.png" alt="LA MINA" />
+  <div class="head">
+    <h1 style="font-size:clamp(24px,4vw,32px);">Elige un horario para hablar</h1>
+    <p>15–20 minutos para resolver tus dudas sobre la mentoría y valorar si encaja contigo.</p>
+  </div>
+
+  <div class="panel">
+    <div class="state" id="state-cargando">
+      <div class="spinner"></div>
+      <p style="margin-top:18px;">Comprobando tu solicitud…</p>
+    </div>
+
+    <div class="state hidden" id="state-sin-acceso">
+      <div class="eyebrow">Falta un paso</div>
+      <h2>No encontramos una solicitud válida</h2>
+      <p>Para reservar una llamada primero tienes que completar la solicitud de mentoría — así puedo prepararme antes de hablar contigo.</p>
+      <a class="cta" href="mentoria.html">Solicitar la mentoría</a>
+    </div>
+
+    <div class="state hidden" id="state-caducado">
+      <div class="eyebrow">Enlace caducado</div>
+      <h2>Tu solicitud ha caducado</h2>
+      <p>Por seguridad, el acceso a la reserva caduca pasado un tiempo. Tus respuestas ya nos llegaron — puedes volver a solicitarlo para generar un nuevo acceso.</p>
+      <a class="cta" href="mentoria.html">Solicitar de nuevo</a>
+    </div>
+
+    <div class="state hidden" id="state-error-calendly">
+      <div class="eyebrow">No se ha podido cargar</div>
+      <h2>El calendario no ha cargado</h2>
+      <p>Tu solicitud sigue siendo válida, no hace falta que la rellenes otra vez. Vuelve a intentar cargar el calendario.</p>
+      <button class="cta" type="button" id="retry-calendly">Reintentar</button>
+    </div>
+
+    <div id="calendly-embed" class="hidden"></div>
+  </div>
+
+  <a class="back-link" href="index.html">← Volver al inicio</a>
+</main>
+
+<script src="analytics.js"></script>
+<script>
+// Pega aquí la URL de tu evento de Calendly cuando esté creado, por ejemplo:
+// https://calendly.com/tu-usuario/valoracion-mentoria
+var CALENDLY_URL = '';
+
+function mostrarEstado(id){
+  ['state-cargando','state-sin-acceso','state-caducado','state-error-calendly','calendly-embed'].forEach(function(x){
+    document.getElementById(x).classList.add('hidden');
+  });
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function cargarCalendly(){
+  if (!CALENDLY_URL) {
+    mostrarEstado('state-error-calendly');
+    document.getElementById('state-error-calendly').querySelector('p').textContent = 'Todavía no se ha configurado el calendario. Vuelve a intentarlo más tarde.';
+    return;
+  }
+  mostrarEstado('calendly-embed');
+  var embed = document.getElementById('calendly-embed');
+  embed.innerHTML = '';
+  var script = document.createElement('script');
+  script.src = 'https://assets.calendly.com/assets/external/widget.js';
+  script.async = true;
+  script.onload = function(){
+    if (window.Calendly) {
+      window.Calendly.initInlineWidget({ url: CALENDLY_URL, parentElement: embed, prefill: {}, utm: {} });
+      track('calendario_mostrado');
+    } else {
+      mostrarEstado('state-error-calendly');
+    }
+  };
+  script.onerror = function(){ mostrarEstado('state-error-calendly'); };
+  document.head.appendChild(script);
+}
+
+document.getElementById('retry-calendly').onclick = cargarCalendly;
+
+(function(){
+  var token;
+  try { token = sessionStorage.getItem('lamina_reserva_token'); } catch(e){}
+  var paramToken = new URLSearchParams(window.location.search).get('token');
+  if (!token && paramToken) token = paramToken;
+
+  if (!token) { mostrarEstado('state-sin-acceso'); return; }
+
+  fetch('/api/verificar?token=' + encodeURIComponent(token))
+    .then(function(r){ return r.json(); })
+    .then(function(res){
+      if (res.valid) {
+        cargarCalendly();
+      } else if (res.error === 'token_expirado') {
+        mostrarEstado('state-caducado');
+      } else {
+        mostrarEstado('state-sin-acceso');
+      }
+    })
+    .catch(function(){ mostrarEstado('state-error-calendly'); });
+})();
+
+// Escucha el evento de Calendly cuando se confirma una cita, sin depender de una
+// URL de redirección (que en algunos planes de Calendly no está disponible).
+window.addEventListener('message', function(e){
+  if (e.data && e.data.event && e.data.event.indexOf('calendly') === 0 && e.data.event === 'calendly.event_scheduled') {
+    track('reserva_confirmada');
+    try { sessionStorage.removeItem('lamina_reserva_token'); } catch(err){}
+  }
+});
+</script>
+</body>
+</html>
