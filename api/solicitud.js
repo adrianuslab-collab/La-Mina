@@ -73,7 +73,7 @@ module.exports = async (req, res) => {
     'Retiradas': retiros,
     'Situación actual': situacion,
     'Presupuesto declarado': presupuestoLabel,
-    'Confirmación': 'Quiere acceder al plan Premium',
+    'Confirmación': 'Quiere solicitar el acceso al plan Premium',
     'Fecha de la solicitud': fecha,
     'ID de solicitud': solicitudId,
     'Origen': origen || '(no disponible)',
