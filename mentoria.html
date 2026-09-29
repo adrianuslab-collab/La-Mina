@@ -145,8 +145,8 @@
 var CLASE_DISPONIBLE = true;
 var CLASE_YOUTUBE_ID = 'JIyHcVA1WkA';
 
-// Pega aquí tu endpoint (Formspree u otro) para recibir los leads por email:
-var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxdKoh8ulMhm3BLF2LAHrzrTLIE5h2BAO_qNixKOYeVHcKaz1DVmUzZvM0Ll_BYQeXaNA/exec";
+// Formulario de Formspree "Leads clase gratis La Mina" (sin acción de email configurada a propósito):
+var FORM_ENDPOINT = "https://formspree.io/f/xppwkypz";
 
 var PRESUPUESTO_OPCIONES = [
   { label: 'Ahora mismo solo quiero información gratuita', key: 'gratis' },
@@ -190,11 +190,7 @@ var STEPS = [
   }
 
   function send(){
-    var payload = Object.assign({ _subject: 'Nuevo lead LA MINA — ' + (data.nombre || 'sin nombre'), fecha: new Date().toISOString() }, data);
     try {
-      var prev = JSON.parse(localStorage.getItem('lamina_leads') || '[]');
-      prev.push(payload);
-      localStorage.setItem('lamina_leads', JSON.stringify(prev));
       localStorage.setItem('lamina_clase', '1');
       localStorage.setItem('lamina_presupuesto_key', data.presupuestoKey || '');
       // Para que, si pide el plan Premium después, no tenga que responder otra vez estas mismas preguntas
@@ -210,8 +206,19 @@ var STEPS = [
       }));
     } catch(e) {}
     if (FORM_ENDPOINT) {
-      // text/plain evita que el navegador haga un preflight CORS, que Google Apps Script no gestiona bien
-      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(function(){});
+      var payload = {
+        'Nombre y apellidos': data.nombre || '',
+        'Email': data.email || '',
+        'Teléfono': data.telefono || '',
+        'Tiempo operando': data.experiencia || '',
+        'Retiradas': data.retiros || '',
+        'Presupuesto': data.inversion || '',
+        'Situación actual': data.situacion || '',
+        'Tipo': 'Vio la clase gratis',
+        'Fecha': new Date().toISOString(),
+        '_subject': 'Lead clase gratis LA MINA — ' + (data.nombre || 'sin nombre')
+      };
+      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify(payload) }).catch(function(){});
     }
   }
 
@@ -290,9 +297,17 @@ var STEPS = [
     var btn = this, msgEl = document.getElementById('call-msg');
     var mensaje = (msgEl.value || '').trim();
     if (!mensaje) { msgEl.focus(); return; }
-    var payload = Object.assign({ tipo: 'Mensaje', fecha: new Date().toISOString(), mensaje: mensaje }, data);
     if (FORM_ENDPOINT) {
-      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(function(){});
+      var payload = {
+        'Nombre y apellidos': data.nombre || '',
+        'Email': data.email || '',
+        'Teléfono': data.telefono || '',
+        'Mensaje': mensaje,
+        'Tipo': 'Mensaje de dudas',
+        'Fecha': new Date().toISOString(),
+        '_subject': 'Mensaje de dudas LA MINA — ' + (data.nombre || 'sin nombre')
+      };
+      fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify(payload) }).catch(function(){});
     }
     btn.disabled = true;
     btn.textContent = 'Enviado ✓';
