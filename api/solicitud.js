@@ -39,7 +39,6 @@ module.exports = async (req, res) => {
   const retiros = (body.retiros || '').trim();
   const situacion = (body.situacion || '').trim();
   const confirmacion = body.confirmacion === true;
-  const consentimientoComercial = body.consentimientoComercial === true;
   const origen = (body.origen || '').trim();
 
   // Re-validación en servidor: esto es lo que de verdad impide saltarse el filtro,
@@ -74,8 +73,7 @@ module.exports = async (req, res) => {
     'Retiradas': retiros,
     'Situación actual': situacion,
     'Presupuesto declarado': presupuestoLabel,
-    'Confirmación': 'Solicita acceso al plan Premium y quiere valorar si encaja',
-    'Acepta comunicaciones comerciales': consentimientoComercial ? 'Sí' : 'No',
+    'Confirmación': 'Quiere acceder al plan Premium',
     'Fecha de la solicitud': fecha,
     'ID de solicitud': solicitudId,
     'Origen': origen || '(no disponible)',

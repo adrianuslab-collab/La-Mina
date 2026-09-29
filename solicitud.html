@@ -210,8 +210,7 @@ var STEPS = [
   }
 
   function consentBlock(){
-    return '<label class="consent"><input type="checkbox" id="confirmacion" /> Estoy solicitando acceso al plan Premium y quiero valorar si encaja conmigo.</label>' +
-           '<label class="consent"><input type="checkbox" id="consentimiento" /> Acepto recibir comunicaciones comerciales sobre La Mina.</label>' +
+    return '<label class="consent"><input type="checkbox" id="confirmacion" /> Quiero acceder al plan Premium.</label>' +
            '<p style="margin-top:14px;font-size:12.5px;color:#6E6A65;">Tus datos se usan solo para gestionar esta solicitud. Más info en <a href="privacidad.html" target="_blank">la política de privacidad</a>.</p>';
   }
 
@@ -238,7 +237,6 @@ var STEPS = [
         data.telefonoDial = document.getElementById('dial').value;
         data.telefonoNumero = v;
         data.telefono = data.telefonoDial + ' ' + v;
-        data.consentimientoComercial = document.getElementById('consentimiento').checked;
         data.confirmacion = true;
         enviarSolicitud();
         return;
@@ -268,7 +266,6 @@ var STEPS = [
     var next = document.getElementById('next');
     document.getElementById('confirmacion').onchange = function(){ next.disabled = !this.checked; };
     next.onclick = function(){
-      data.consentimientoComercial = document.getElementById('consentimiento').checked;
       data.confirmacion = true;
       enviarSolicitud();
     };
@@ -322,7 +319,6 @@ var STEPS = [
         email: data.email,
         telefono: data.telefono,
         confirmacion: data.confirmacion,
-        consentimientoComercial: data.consentimientoComercial,
         origen: document.referrer || ''
       })
     }).then(function(r){ return r.json().then(function(j){ return { status: r.status, body: j }; }); })
