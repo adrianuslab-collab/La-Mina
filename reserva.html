@@ -82,7 +82,7 @@
 <script>
 // Pega aquí la URL de tu evento de Calendly cuando esté creado, por ejemplo:
 // https://calendly.com/tu-usuario/valoracion-mentoria
-var CALENDLY_URL = '';
+var CALENDLY_URL = 'https://calendly.com/adrianuslab/edicion-2-0';
 
 function mostrarEstado(id){
   ['state-cargando','state-sin-acceso','state-caducado','state-error-calendly','calendly-embed'].forEach(function(x){
@@ -91,7 +91,7 @@ function mostrarEstado(id){
   document.getElementById(id).classList.remove('hidden');
 }
 
-function cargarCalendly(){
+function cargarCalendly(emailInvitado){
   if (!CALENDLY_URL) {
     mostrarEstado('state-error-calendly');
     document.getElementById('state-error-calendly').querySelector('p').textContent = 'Todavía no se ha configurado el calendario. Vuelve a intentarlo más tarde.';
@@ -105,7 +105,7 @@ function cargarCalendly(){
   script.async = true;
   script.onload = function(){
     if (window.Calendly) {
-      window.Calendly.initInlineWidget({ url: CALENDLY_URL, parentElement: embed, prefill: {}, utm: {} });
+      window.Calendly.initInlineWidget({ url: CALENDLY_URL, parentElement: embed, prefill: emailInvitado ? { email: emailInvitado } : {}, utm: {} });
       track('calendario_mostrado');
     } else {
       mostrarEstado('state-error-calendly');
@@ -115,7 +115,8 @@ function cargarCalendly(){
   document.head.appendChild(script);
 }
 
-document.getElementById('retry-calendly').onclick = cargarCalendly;
+var emailVerificado = '';
+document.getElementById('retry-calendly').onclick = function(){ cargarCalendly(emailVerificado); };
 
 (function(){
   var token;
@@ -129,7 +130,8 @@ document.getElementById('retry-calendly').onclick = cargarCalendly;
     .then(function(r){ return r.json(); })
     .then(function(res){
       if (res.valid) {
-        cargarCalendly();
+        emailVerificado = res.email || '';
+        cargarCalendly(emailVerificado);
       } else if (res.error === 'token_expirado') {
         mostrarEstado('state-caducado');
       } else {
