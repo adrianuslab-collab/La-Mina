@@ -41,14 +41,30 @@
 <main>
   <img class="logo" src="assets/logo-lamina.png" alt="LA MINA" />
   <div class="head">
-    <h1 style="font-size:clamp(24px,4vw,32px);">Elige un horario para hablar</h1>
-    <p>15–20 minutos para confirmar tu acceso al plan Premium y resolver dudas.</p>
+    <h1 style="font-size:clamp(24px,4vw,32px);">Tu solicitud del plan Premium</h1>
+    <p>La llamada conmigo es opcional — solo si te quedan dudas antes de entrar.</p>
   </div>
 
   <div class="panel">
     <div class="state" id="state-cargando">
       <div class="spinner"></div>
       <p style="margin-top:18px;">Comprobando tu solicitud…</p>
+    </div>
+
+    <div class="state hidden" id="state-elegir">
+      <div class="eyebrow">Solicitud recibida</div>
+      <h2>¡Ya tengo tu solicitud!</h2>
+      <p>Si ya tienes claro que quieres entrar, no hace falta llamada — me pondré en contacto contigo para completar tu acceso al plan Premium. Si prefieres resolver dudas antes, puedes reservar una llamada corta conmigo.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:340px;margin:22px auto 0;">
+        <button class="cta" type="button" id="btn-sin-llamada" style="margin-top:0;">No necesito llamada, quiero entrar</button>
+        <button type="button" id="btn-con-llamada" style="margin-top:0;padding:16px 26px;border-radius:12px;background:#151312;color:#F4F1EA;border:1px solid rgba(255,255,255,.16);font-weight:800;letter-spacing:.02em;text-transform:uppercase;font-size:14px;cursor:pointer;">Tengo dudas, prefiero una llamada</button>
+      </div>
+    </div>
+
+    <div class="state hidden" id="state-sin-llamada">
+      <div class="eyebrow">¡Perfecto!</div>
+      <h2>Te contactaré para completar tu acceso</h2>
+      <p>No hace falta que hagas nada más. Me pondré en contacto contigo en el email o teléfono que dejaste en la solicitud para activar tu acceso al plan Premium antes de la apertura.</p>
     </div>
 
     <div class="state hidden" id="state-sin-acceso">
@@ -85,7 +101,7 @@
 var CALENDLY_URL = 'https://calendly.com/adrianuslab/edicion-2-0';
 
 function mostrarEstado(id){
-  ['state-cargando','state-sin-acceso','state-caducado','state-error-calendly','calendly-embed'].forEach(function(x){
+  ['state-cargando','state-elegir','state-sin-llamada','state-sin-acceso','state-caducado','state-error-calendly','calendly-embed'].forEach(function(x){
     document.getElementById(x).classList.add('hidden');
   });
   document.getElementById(id).classList.remove('hidden');
@@ -117,6 +133,11 @@ function cargarCalendly(emailInvitado){
 
 var emailVerificado = '';
 document.getElementById('retry-calendly').onclick = function(){ cargarCalendly(emailVerificado); };
+document.getElementById('btn-con-llamada').onclick = function(){ cargarCalendly(emailVerificado); };
+document.getElementById('btn-sin-llamada').onclick = function(){
+  track('acceso_sin_llamada');
+  mostrarEstado('state-sin-llamada');
+};
 
 (function(){
   var token;
@@ -131,7 +152,7 @@ document.getElementById('retry-calendly').onclick = function(){ cargarCalendly(e
     .then(function(res){
       if (res.valid) {
         emailVerificado = res.email || '';
-        cargarCalendly(emailVerificado);
+        mostrarEstado('state-elegir');
       } else if (res.error === 'token_expirado') {
         mostrarEstado('state-caducado');
       } else {
