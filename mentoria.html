@@ -186,6 +186,7 @@ var STEPS = [
       prev.push(payload);
       localStorage.setItem('lamina_leads', JSON.stringify(prev));
       localStorage.setItem('lamina_clase', '1');
+      localStorage.setItem('lamina_presupuesto_key', data.presupuestoKey || '');
       // Para que, si pide el plan Premium después, no tenga que responder otra vez estas mismas preguntas
       sessionStorage.setItem('lamina_quiz_prefill', JSON.stringify({
         experiencia: data.experiencia,
@@ -289,7 +290,12 @@ var STEPS = [
     document.getElementById('call-sent').classList.remove('hidden');
   };
 
-  try { if (localStorage.getItem('lamina_clase') === '1') { unlock(); } } catch(e) {}
+  try {
+    if (localStorage.getItem('lamina_clase') === '1') {
+      data.presupuestoKey = localStorage.getItem('lamina_presupuesto_key') || '';
+      unlock();
+    }
+  } catch(e) {}
   render();
 })();
 </script>
