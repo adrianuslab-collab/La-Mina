@@ -41,7 +41,7 @@
 <main style="position:relative;z-index:1;">
 
   <section style="padding:44px 20px 56px;max-width:1040px;margin:0 auto;text-align:center;">
-    <div class="countdown-banner">Apertura <span style="text-transform:uppercase;">01/10</span> · Faltan <span id="countdown-days">–</span></div>
+    <div class="countdown-banner">Plazas abiertas</div>
     <img src="assets/logo-lamina.png" alt="LA MINA" style="width:min(340px,72vw);height:auto;margin:0 auto 26px;" />
     <h1 style="font-size:clamp(19px,5.2vw,54px);line-height:1.1;margin:0 auto;">Aprende cómo pasé de currar en una <span style="color:#F07C1F;">refinería</span> a retirar más de <span style="color:#F07C1F;">$1,2M</span> del mercado y vivir en Dubái</h1>
 
@@ -241,18 +241,5 @@
   </footer>
 </main>
 <script src="analytics.js"></script>
-<script>
-(function(){
-  var target = new Date('2026-10-01T00:00:00');
-  var el = document.getElementById('countdown-days');
-  function update(){
-    var diff = target - new Date();
-    var days = Math.max(0, Math.ceil(diff / 86400000));
-    el.textContent = days + (days === 1 ? ' día' : ' días');
-  }
-  update();
-  setInterval(update, 3600000);
-})();
-</script>
 </body>
 </html>

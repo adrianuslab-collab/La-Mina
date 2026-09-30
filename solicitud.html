@@ -65,7 +65,7 @@
 <div class="bg2"></div>
 
 <main>
-  <div class="top-nav"><div class="countdown-banner">Apertura <span style="text-transform:uppercase;">01/10</span> · Faltan <span id="countdown-days">–</span></div></div>
+  <div class="top-nav"><div class="countdown-banner">Plazas abiertas</div></div>
   <img class="logo" src="assets/logo-lamina.png" alt="LA MINA" />
 
   <div style="text-align:center;margin-bottom:22px;">
@@ -101,19 +101,6 @@
 </main>
 
 <script src="analytics.js"></script>
-<script>
-(function(){
-  var target = new Date('2026-10-01T00:00:00');
-  var el = document.getElementById('countdown-days');
-  function update(){
-    var diff = target - new Date();
-    var days = Math.max(0, Math.ceil(diff / 86400000));
-    el.textContent = days + (days === 1 ? ' día' : ' días');
-  }
-  update();
-  setInterval(update, 3600000);
-})();
-</script>
 
 <script>
 var PAISES = [
