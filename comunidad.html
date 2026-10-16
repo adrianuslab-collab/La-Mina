@@ -23,6 +23,14 @@
   summary::-webkit-details-marker { display: none; }
   details[open] .faq-plus { transform: rotate(45deg); }
   @media (max-width: 719px) { .historia-img { order: -1; } .story-col { text-align: center; } }
+  .disc-grid { display: grid; grid-template-columns: 340px minmax(0,1fr); gap: 40px; align-items: center; }
+  .disc-grid.novideo { grid-template-columns: minmax(0,1fr); }
+  .disc-grid.novideo .disc-video { display: none; }
+  .disc-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 12px; }
+  .disc-card { padding: 20px 22px; border-radius: 14px; background: rgba(19,17,16,.86); border: 1px solid rgba(255,255,255,.10); }
+  .disc-card h3 { font-size: 17px; letter-spacing: -.02em; color: #F4F1EA; }
+  .disc-card p { margin-top: 8px; font-size: 14.5px; line-height: 1.55; color: #A6A29B; }
+  @media (max-width: 860px) { .disc-grid { grid-template-columns: minmax(0,1fr); gap: 28px; } }
   .rail::-webkit-scrollbar { height: 6px; }
   .rail::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 99px; }
 </style>
@@ -203,6 +211,45 @@
       <span>Pago seguro</span><span style="opacity:.5;">·</span><span>Acceso inmediato</span><span style="opacity:.5;">·</span><span>Sin permanencia</span>
     </div>
   </section>
+
+  <section id="discord" style="padding:8px 20px 72px;max-width:1040px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <span style="display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#7E7A74;margin-bottom:12px;"><span style="width:22px;height:1px;background:#F07C1F;"></span>Dentro de La Mina</span>
+      <h2 style="font-size:clamp(26px,4.2vw,40px);">¿Qué vas a encontrar en el <span style="color:#F07C1F;">Discord de La Mina?</span></h2>
+      <p style="margin-top:14px;font-size:16px;color:#A6A29B;">Un recorrido por cada zona del servidor, tal y como la vas a ver al entrar.</p>
+    </div>
+
+    <div class="disc-grid">
+      <!-- Para activar el vídeo: pega el ID de YouTube (no listado) en data-yt, p. ej. data-yt="AbC123xyz09" -->
+      <div class="disc-video" id="discord-video" data-yt="" style="position:relative;width:100%;max-width:340px;aspect-ratio:9/16;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid rgba(240,124,31,.32);background:#131110;cursor:pointer;box-shadow:0 30px 90px rgba(0,0,0,.6);">
+        <img src="assets/discord-poster.jpg" alt="Recorrido por el Discord de La Mina" width="540" height="960" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+        <div style="position:absolute;inset:0;background:rgba(6,5,5,.28);display:grid;place-items:center;">
+          <div style="width:74px;height:74px;border-radius:50%;background:#F07C1F;display:grid;place-items:center;animation:pz 3.2s ease-out infinite;">
+            <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:#0B0908;margin-left:3px;"><path d="M8 5v14l11-7L8 5Z"></path></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="disc-list">
+        <div class="disc-card"><h3>Bienvenida y guía</h3><p>Normas, cómo empezar y una guía del servidor para saber dónde está cada cosa desde el primer día.</p></div>
+        <div class="disc-card"><h3>Comunidad</h3><p>Chat general, dudas de trading y de plataformas, tus trades para comentarlos, logros y descuentos para miembros.</p></div>
+        <div class="disc-card"><h3>Preparación</h3><p>Análisis semanal, calendario económico, COT, macro, últimas noticias y mindset.</p></div>
+        <div class="disc-card"><h3>Operativa diaria</h3><p>Sesiones de Londres y Nueva York, el journal de Adrianus y el calendario de directos.</p></div>
+        <div class="disc-card"><h3>Order Flow</h3><p>Canales de ATAS, DeepCharts, indicadores y optionsflow.</p></div>
+        <div class="disc-card"><h3>Material adicional</h3><p>Plantillas descargables y recursos complementarios.</p></div>
+      </div>
+    </div>
+  </section>
+  <script>
+  (function(){
+    var box = document.getElementById('discord-video');
+    var id = box.getAttribute('data-yt');
+    if (!id) { box.parentNode.classList.add('novideo'); return; }
+    box.addEventListener('click', function(){
+      this.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0" title="Recorrido por el Discord de La Mina" frameborder="0" allow="accelerate; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>';
+    }, { once: true });
+  })();
+  </script>
 
   <section style="padding:8px 20px 64px;max-width:760px;margin:0 auto;">
     <h2 style="font-size:clamp(30px,5vw,48px);text-align:center;margin-bottom:28px;">Preguntas frecuentes</h2>
