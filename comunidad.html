@@ -23,13 +23,19 @@
   summary::-webkit-details-marker { display: none; }
   details[open] .faq-plus { transform: rotate(45deg); }
   @media (max-width: 719px) { .historia-img { order: -1; } .story-col { text-align: center; } }
-  .disc-grid { display: grid; grid-template-columns: 340px minmax(0,1fr); gap: 40px; align-items: center; }
+  .disc-grid { display: grid; grid-template-columns: 340px minmax(0,1fr); gap: 40px; align-items: stretch; }
+  .disc-grid .disc-video { align-self: start; }
   .disc-grid.novideo { grid-template-columns: minmax(0,1fr); }
   .disc-grid.novideo .disc-video { display: none; }
-  .disc-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 12px; }
-  .disc-card { padding: 20px 22px; border-radius: 14px; background: rgba(19,17,16,.86); border: 1px solid rgba(255,255,255,.10); }
-  .disc-card h3 { font-size: 17px; letter-spacing: -.02em; color: #F4F1EA; }
-  .disc-card p { margin-top: 8px; font-size: 14.5px; line-height: 1.55; color: #A6A29B; }
+  .disc-list { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+  .disc-cat { padding: 12px 16px 13px; border-radius: 12px; background: rgba(19,17,16,.86); border: 1px solid rgba(255,255,255,.10); border-left: 3px solid #F07C1F; }
+  .disc-cat .dh { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; }
+  .disc-cat .dh b { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #FFB06A; }
+  .disc-cat .dh span { font-size: 12.5px; color: #8E8A84; }
+  .disc-chans { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .disc-chans i { font-style: normal; font-size: 12px; line-height: 1; padding: 6px 8px; border-radius: 6px; background: rgba(255,255,255,.06); color: #C7C3BC; white-space: nowrap; }
+  .disc-chans i::before { content: "#"; color: #F07C1F; margin-right: 3px; font-weight: 700; }
+  .disc-chans i.v::before { content: "🔊"; margin-right: 4px; font-size: 11px; }
   @media (max-width: 860px) { .disc-grid { grid-template-columns: minmax(0,1fr); gap: 28px; } }
   .rail::-webkit-scrollbar { height: 6px; }
   .rail::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 99px; }
@@ -265,12 +271,12 @@
       </div>
 
       <div class="disc-list">
-        <div class="disc-card"><h3>Bienvenida y guía</h3><p>Normas, cómo empezar y una guía del servidor para saber dónde está cada cosa desde el primer día.</p></div>
-        <div class="disc-card"><h3>Comunidad</h3><p>Chat general, dudas de trading y de plataformas, tus trades para comentarlos, logros y descuentos para miembros.</p></div>
-        <div class="disc-card"><h3>Preparación</h3><p>Análisis semanal, calendario económico, COT, macro, últimas noticias y mindset.</p></div>
-        <div class="disc-card"><h3>Operativa diaria</h3><p>Sesiones de Londres y Nueva York, el journal de Adrianus y el calendario de directos.</p></div>
-        <div class="disc-card"><h3>Order Flow</h3><p>Canales de ATAS, DeepCharts, indicadores y optionsflow.</p></div>
-        <div class="disc-card"><h3>Material adicional</h3><p>Plantillas descargables y recursos complementarios.</p></div>
+        <div class="disc-cat"><div class="dh"><b>Bienvenido minero</b><span>Normas y guía para empezar</span></div><div class="disc-chans"><i>bienvenida</i><i>normas</i><i>empieza-aqui</i><i>guía-del-servidor</i></div></div>
+        <div class="disc-cat"><div class="dh"><b>Comunidad</b><span>Chat, dudas, tus trades y descuentos</span></div><div class="disc-chans"><i>chat</i><i>dudas-trading</i><i>dudas-plataformas</i><i>trades</i><i>logros</i><i>anuncios</i><i>descuentos</i><i>sorteos</i></div></div>
+        <div class="disc-cat"><div class="dh"><b>Preparación</b><span>Análisis, macro, COT y mindset</span></div><div class="disc-chans"><i>analisis-semanal</i><i>macro</i><i>calendario-económico</i><i>cot</i><i>earnings</i><i>mindset</i><i>ultimas-noticias</i><i>trumpetazos</i></div></div>
+        <div class="disc-cat"><div class="dh"><b>Operativa diaria</b><span>Sesiones, journal y directos</span></div><div class="disc-chans"><i>sesión-londres</i><i>sesión-ny</i><i>journal-adrianus</i><i>calendario-directos</i><i class="v">Sala La Mina</i></div></div>
+        <div class="disc-cat"><div class="dh"><b>Orderflow</b><span>Herramientas de order flow</span></div><div class="disc-chans"><i>atas</i><i>deepcharts</i><i>indicadores</i><i>optionsflow</i></div></div>
+        <div class="disc-cat"><div class="dh"><b>Material adicional</b><span>Plantillas y recursos</span></div><div class="disc-chans"><i>plantillas</i><i>material-adicional</i></div></div>
       </div>
     </div>
   </section>
